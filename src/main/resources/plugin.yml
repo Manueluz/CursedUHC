@@ -1,0 +1,15 @@
+name: CursedUHC
+version: '${project.version}'
+main: ccplugins.curseduhc.CursedUHC
+api-version: 1.18
+prefix: CursedUHC
+authors: [ Manueluz ]
+description: Simple UHC plugin
+
+commands:
+  chat:
+    usage: /<command> "G" (for global chat) "T" (For teams chat)
+    description: changes the chat channel
+  revive:
+    usage: /<command> (PlayerName)
+    description: revives the plaver
