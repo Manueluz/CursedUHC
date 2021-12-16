@@ -13,3 +13,6 @@ commands:
   revive:
     usage: /<command> (PlayerName)
     description: revives the plaver
+  startGame:
+    usage: /<command>
+    description: starts the uhc

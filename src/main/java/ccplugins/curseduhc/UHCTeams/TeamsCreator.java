@@ -1,6 +1,7 @@
 package ccplugins.curseduhc.UHCTeams;
 
 import ccplugins.curseduhc.DeathHandler.DeathListener;
+import ccplugins.curseduhc.UHCGame.GameControler;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -23,6 +24,7 @@ public class TeamsCreator extends BukkitRunnable {
 
     @Override
     public void run() {
+        if(!GameControler.getControler().isGameStarted()){return;}
         if(handler.teamsCompleted()){
             plugin.getServer().broadcastMessage(ChatColor.of(new Color(35,255,150)) + "Todos los jugadores tienen equipo!");
             cancel();

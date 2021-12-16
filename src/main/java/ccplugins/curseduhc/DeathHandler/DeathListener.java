@@ -4,6 +4,7 @@ import ccplugins.curseduhc.DeathHandler.DeathCommands.DeadCommands;
 import ccplugins.curseduhc.DeathHandler.DeathEnforcer.RejoinEnforcer;
 import ccplugins.curseduhc.DeathHandler.DeathEnforcer.RespawnEnforcer;
 import ccplugins.curseduhc.DeathHandler.DeathEnforcer.TeamEnforcer;
+import ccplugins.curseduhc.UHCGame.GameControler;
 import ccplugins.curseduhc.UHCTeams.TeamsCreator;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Location;
@@ -54,6 +55,7 @@ public class DeathListener implements Listener {
     }
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent event){
+        if(!GameControler.getControler().isGameStarted()){return;}
         deadPlayers.add(event.getEntity().getUniqueId());
         deadLocations.put(event.getEntity().getUniqueId(),event.getEntity().getLocation());
         event.setDeathMessage(ChatColor.of(new Color(255, 5, 0)) +""+ ChatColor.BOLD + "Felicidades a " + event.getEntity().getDisplayName() + " por cumplir sus sueños y morir!");
