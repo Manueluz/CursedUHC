@@ -20,7 +20,6 @@ public class BoltStorm extends UHCEvent {
 
     @Override
     public void update() {
-        Random rand = new Random();
         for(Player player : plugin.getServer().getOnlinePlayers()){
             Location location = player.getLocation();
 

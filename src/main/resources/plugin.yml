@@ -16,3 +16,6 @@ commands:
   startGame:
     usage: /<command>
     description: starts the uhc
+  eventQueue:
+    usage: /<command>
+    description: prints the event queue

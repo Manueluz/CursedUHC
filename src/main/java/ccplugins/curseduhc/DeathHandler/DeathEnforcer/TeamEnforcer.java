@@ -26,7 +26,7 @@ public class TeamEnforcer extends BukkitRunnable {
                     if(memberId != player.getUniqueId()){
                         Player teamMate = plugin.getServer().getPlayer(memberId);
                         if(!DeathListener.getDeadPlayers().contains(teamMate.getUniqueId())){
-                            if(teamMate.getWorld().getName() != player.getWorld().getName()) {
+                            if(teamMate.getWorld()!= player.getWorld()) {
                                 player.teleport(teamMate.getLocation());
                             }
                             if(player.getSpectatorTarget() != teamMate) {
@@ -35,7 +35,6 @@ public class TeamEnforcer extends BukkitRunnable {
                         }
                     }
                 }
-
             }
         }
     }

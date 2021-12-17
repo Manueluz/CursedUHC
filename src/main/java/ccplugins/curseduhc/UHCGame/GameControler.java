@@ -13,7 +13,7 @@ import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.checkerframework.checker.units.qual.A;
+
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -70,6 +70,7 @@ public class GameControler {
         GameState = true;
 
         //Start The events
+
         ArrayList<UHCEvent> events = new ArrayList<>();
         events.add(new BoltStorm(plugin));
         events.add(new SolarStorm(plugin));
@@ -83,8 +84,11 @@ public class GameControler {
         while(!events.isEmpty()){
             UHCEvent event = events.get(rand.nextInt(events.size()));
             EventHandler.getHandler().addEvent(event);
+            plugin.getLogger().info("Added event:" + event.getName());
             events.remove(event);
         }
+
+
         EventHandler.getHandler().start();
 
         //Start The CountDown
