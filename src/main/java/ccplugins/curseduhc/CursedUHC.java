@@ -2,6 +2,7 @@ package ccplugins.curseduhc;
 
 import ccplugins.curseduhc.ChatHandler.ChatListener;
 import ccplugins.curseduhc.DeathHandler.DeathListener;
+import ccplugins.curseduhc.MiscFeatures.MiscLoader;
 import ccplugins.curseduhc.UHCGame.Events.EventHandler;
 import ccplugins.curseduhc.UHCGame.GameControler;
 import ccplugins.curseduhc.UHCTeams.TeamHandler;
@@ -21,6 +22,8 @@ public final class CursedUHC extends JavaPlugin {
         GameControler.init(this);
         getLogger().info("Loading EventHandler");
         EventHandler.init(this);
+        getLogger().info("Loading MicsFeatures");
+        MiscLoader.init(this);
     }
 
     @Override
