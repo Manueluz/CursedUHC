@@ -7,6 +7,9 @@ import ccplugins.curseduhc.UHCGame.Events.EventHandler;
 import ccplugins.curseduhc.UHCGame.GameCommands.GameCommands;
 
 
+import ccplugins.curseduhc.UHCGame.WorldBorderTasks.WorldBorderReduceTask;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -63,7 +66,17 @@ public class GameControler {
         }
         EventHandler.getHandler().start();
 
+        //Set the world border to 2500 size
+        for(World world : Bukkit.getServer().getWorlds()){
+            world.getWorldBorder().setCenter(0,0);
+            world.getWorldBorder().setSize(2500);
+        }
         //Start The CountDown
         Countdown countdown = new Countdown(10800,plugin);
+        Countdown firstWorldBorderReduce = new Countdown(7200,plugin);
+        Countdown secondWorldBorderReduce = new Countdown(9000,plugin);
+
+        firstWorldBorderReduce.addLastTask(new WorldBorderReduceTask(1750,900));
+        secondWorldBorderReduce.addLastTask(new WorldBorderReduceTask(200,1800));
     }
 }
