@@ -1,10 +1,10 @@
 package ccplugins.curseduhc.UHCGame.Events;
 
 import ccplugins.curseduhc.UHCGame.Events.CustomEvents.UHCEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.TimerTask;
 
-public class EventTimer extends TimerTask {
+public class EventTimer extends BukkitRunnable {
     @Override
     public void run() {
         EventHandler handler = EventHandler.getHandler();

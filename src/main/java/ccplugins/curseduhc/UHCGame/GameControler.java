@@ -27,7 +27,7 @@ public class GameControler {
     private Instant startTime;
     private boolean GameState;
     private static GameControler controler;
-    private Plugin plugin;
+    private final Plugin plugin;
 
     private GameControler(Plugin plugin){
         currentPlayers = new ArrayList<>();

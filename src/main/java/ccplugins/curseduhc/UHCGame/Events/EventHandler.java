@@ -6,7 +6,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Stack;
-import java.util.Timer;
 
 public class EventHandler {
 
@@ -14,7 +13,7 @@ public class EventHandler {
     private final Stack<UHCEvent> eventQueue;
     private static EventHandler handler;
     private final Plugin plugin;
-    private Timer timer;
+    private EventTimer timer;
 
     private EventHandler(Plugin plugin){
         eventQueue = new Stack<>();
@@ -44,8 +43,8 @@ public class EventHandler {
     }
 
     public void start(){
-        timer = new Timer();
-        timer.scheduleAtFixedRate(new EventTimer(),TIME_BETWEEN_EVENTS,TIME_BETWEEN_EVENTS);
+        timer = new EventTimer();
+        timer.runTaskTimer(plugin,TIME_BETWEEN_EVENTS,TIME_BETWEEN_EVENTS);
     }
 
     public void stop(){
