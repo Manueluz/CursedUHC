@@ -8,13 +8,16 @@ import java.util.ArrayList;
 
 public class Countdown {
 
+    final long startTime;
     long remainingTime;
     private BukkitTask updater;
     private final Plugin plugin;
     private ArrayList<FinishTask> tasks;
 
     public Countdown(long duration, Plugin plugin){
+        startTime = duration;
         remainingTime = duration;
+        tasks = new ArrayList<>();
         updater = new CountUpdater(this).runTaskTimer(plugin,0,20);
         this.plugin = plugin;
     }
@@ -33,6 +36,9 @@ public class Countdown {
 
     public long getRemainingSeconds(){
         return remainingTime;
+    }
+    public long getStartTime(){
+        return startTime;
     }
 
     private static class CountUpdater extends BukkitRunnable {

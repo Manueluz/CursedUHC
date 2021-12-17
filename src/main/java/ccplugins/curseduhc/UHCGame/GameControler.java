@@ -7,6 +7,7 @@ import ccplugins.curseduhc.UHCGame.Events.EventHandler;
 import ccplugins.curseduhc.UHCGame.GameCommands.GameCommands;
 
 
+import ccplugins.curseduhc.UHCGame.UI.UIupdater;
 import ccplugins.curseduhc.UHCGame.WorldBorderTasks.WorldBorderReduceTask;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -20,7 +21,7 @@ import java.util.UUID;
 public class GameControler {
 
     private static GameControler controler;
-
+    private Countdown finalCountDown;
     private ArrayList<UUID> currentPlayers;
     private boolean GameState;
     private final Plugin plugin;
@@ -39,9 +40,8 @@ public class GameControler {
 
     public static GameControler getControler(){return controler;}
     public ArrayList<UUID> getGamePlayers(){return currentPlayers;}
-    public boolean isGameStarted(){
-        return GameState;
-    }
+    public Countdown getFinalCountDown(){return finalCountDown;}
+    public boolean isGameStarted(){return GameState;}
 
     public void startGame(){
         if(GameState){return;}
@@ -72,11 +72,15 @@ public class GameControler {
             world.getWorldBorder().setSize(2500);
         }
         //Start The CountDown
-        Countdown countdown = new Countdown(10800,plugin);
+        finalCountDown = new Countdown(50,plugin);
         Countdown firstWorldBorderReduce = new Countdown(7200,plugin);
         Countdown secondWorldBorderReduce = new Countdown(9000,plugin);
 
         firstWorldBorderReduce.addLastTask(new WorldBorderReduceTask(1750,900));
         secondWorldBorderReduce.addLastTask(new WorldBorderReduceTask(200,1800));
+
+        //Start the UI updater
+        UIupdater updater = new UIupdater(plugin);
+        updater.runTaskTimer(plugin,0,3);
     }
 }
