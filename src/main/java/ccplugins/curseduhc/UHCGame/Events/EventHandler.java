@@ -49,6 +49,6 @@ public class EventHandler {
     }
 
     public void stop(){
-        timer.cancel();
+        if(timer!=null)timer.cancel();
     }
 }
