@@ -55,9 +55,8 @@ public class GameControler {
         }
     }
 
-    public static GameControler getControler(){
-        return controler;
-    }
+    public static GameControler getControler(){return controler;}
+    public ArrayList<UUID> getGamePlayers(){return currentPlayers;}
     public Instant getStartTime(){
         return startTime;
     }
