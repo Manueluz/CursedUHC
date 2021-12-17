@@ -1,5 +1,6 @@
 package ccplugins.curseduhc.UHCGame.Events.CustomEvents;
 
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -14,7 +15,7 @@ public class SolarStorm extends UHCEvent{
     @Override
     public void update() {
         for(Player player : plugin.getServer().getOnlinePlayers()){
-            if(player.getEyeLocation().getBlockY() > player.getWorld().getHighestBlockYAt(player.getLocation())){
+            if(player.getLocation().getBlock().getLightFromSky() == 15 && player.getGameMode() == GameMode.SURVIVAL){
                 player.setFireTicks(20);
             }
         }
