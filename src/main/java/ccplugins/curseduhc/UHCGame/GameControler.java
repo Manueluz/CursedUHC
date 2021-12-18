@@ -73,7 +73,7 @@ public class GameControler {
             world.getWorldBorder().setSize(5000);
         }
         //Start The CountDown
-        finalCountDown = new Countdown(50,plugin);
+        finalCountDown = new Countdown(10800,plugin);
         Countdown firstWorldBorderReduce = new Countdown(7200,plugin);
         Countdown secondWorldBorderReduce = new Countdown(9000,plugin);
 
