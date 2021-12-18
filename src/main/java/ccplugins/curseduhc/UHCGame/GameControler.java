@@ -74,6 +74,7 @@ public class GameControler {
         events.add(new Stonks(plugin));
         Random rand = new Random();
         while(!events.isEmpty()){
+            EventHandler.getHandler().getEventQueue().clear();
             UHCEvent event = events.get(rand.nextInt(events.size()));
             EventHandler.getHandler().addEvent(event);
             plugin.getLogger().info("Added event:" + event.getName());
