@@ -15,8 +15,8 @@ public class MiscLoader {
 
         plugin.getServer().getPluginManager().registerEvents(new GhastDrop(),plugin);
         plugin.getServer().getPluginManager().registerEvents(new GoldenHeadEatListener(),plugin);
-        plugin.getServer().getPluginManager().registerEvents(new VilagerZombifier(),plugin);
 
+        new CompassPointer().runTaskTimer(plugin,0,40);
         new CompassPointer().runTaskTimer(plugin,0,40);
 
         CraftRegisterer.registerCustomCrafts(plugin);
