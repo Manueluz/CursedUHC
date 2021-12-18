@@ -89,10 +89,5 @@ public class GameControler {
         for(Player player : plugin.getServer().getOnlinePlayers()){
             currentPlayers.add(player.getUniqueId());
         }
-
-        //Hide the coordinates
-        for(World world : plugin.getServer().getWorlds()){
-            world.setGameRule(GameRule.REDUCED_DEBUG_INFO,true);
-        }
     }
 }
