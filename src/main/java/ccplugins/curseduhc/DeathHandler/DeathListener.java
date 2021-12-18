@@ -65,7 +65,7 @@ public class DeathListener implements Listener {
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent event){
 
-        event.getDrops().removeIf(item -> item.getType() == Material.AIR);
+        event.getDrops().removeIf(item -> item.getType() == Material.AIR);//Minecraft will try to drop air, BECAUSE
 
         if(!GameControler.getControler().isGameStarted()){return;}
 
