@@ -45,7 +45,7 @@ public class ScoreboardUI {
             if(TeamHandler.getHandler().hasTeam(player)){
                 for(UUID id : TeamHandler.getHandler().getTeam(player).getMembers()){
                     if(id == player.getUniqueId()){continue;}
-                    name.getScore(plugin.getServer().getOfflinePlayer(id).getName()).setScore(5);
+                    name.getScore(ChatColor.GRAY+"    "+plugin.getServer().getOfflinePlayer(id).getName()).setScore(5);
                 }
             }else{
                 name.getScore(ChatColor.GRAY+""+ChatColor.MAGIC+"    AAAAAAAAAA").setScore(5);
