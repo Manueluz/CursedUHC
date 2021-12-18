@@ -70,14 +70,14 @@ public class GameControler {
         //Set the world border to 2500 size
         for(World world : Bukkit.getServer().getWorlds()){
             world.getWorldBorder().setCenter(0,0);
-            world.getWorldBorder().setSize(2500);
+            world.getWorldBorder().setSize(5000);
         }
         //Start The CountDown
         finalCountDown = new Countdown(50,plugin);
         Countdown firstWorldBorderReduce = new Countdown(7200,plugin);
         Countdown secondWorldBorderReduce = new Countdown(9000,plugin);
 
-        firstWorldBorderReduce.addLastTask(new WorldBorderReduceTask(1750,900));
+        firstWorldBorderReduce.addLastTask(new WorldBorderReduceTask(3500,900));
         secondWorldBorderReduce.addLastTask(new WorldBorderReduceTask(200,1800));
 
         //Start the UI updater
