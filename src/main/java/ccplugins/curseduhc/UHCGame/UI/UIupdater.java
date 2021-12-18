@@ -6,9 +6,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class UIupdater extends BukkitRunnable {
     public UIupdater(Plugin plugin){
         BossBarUI.init(plugin);
+        ScoreboardUI.init(plugin);
     }
     @Override
     public void run() {
         BossBarUI.getBossBarUI().update();
+        ScoreboardUI.getScoreboardUI().update();
     }
 }
