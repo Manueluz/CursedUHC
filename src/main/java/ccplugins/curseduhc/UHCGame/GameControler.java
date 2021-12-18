@@ -8,6 +8,7 @@ import ccplugins.curseduhc.UHCGame.Events.EventHandler;
 import ccplugins.curseduhc.UHCGame.GameCommands.GameCommands;
 
 
+import ccplugins.curseduhc.UHCGame.PlayerSpreader.PlayerSpreader;
 import ccplugins.curseduhc.UHCGame.UI.UIupdater;
 import ccplugins.curseduhc.UHCGame.WinDetection.WinDetector;
 import ccplugins.curseduhc.UHCGame.WorldBorderTasks.WorldBorderReduceTask;
@@ -61,9 +62,20 @@ public class GameControler {
     }
     public void startGame(){
         if(GameState){return;}
+
+        //Register the game players
+        currentPlayers.clear();
+        for(Player player : plugin.getServer().getOnlinePlayers()){
+            currentPlayers.add(player.getUniqueId());
+        }
+        //Teleport the game players
+        PlayerSpreader.spreadPlayers(plugin.getServer().getWorld("world"), 700,currentPlayers);
+
         GameState = true;
+
         //Clean the dead players
         DeathListener.getDeadPlayers().clear();
+
         //Start The events
         ArrayList<UHCEvent> events = new ArrayList<>();
         events.add(new BoltStorm(plugin));
@@ -75,8 +87,8 @@ public class GameControler {
         events.add(new SolarEclipse(plugin));
         events.add(new Stonks(plugin));
         Random rand = new Random();
+        EventHandler.getHandler().getEventQueue().clear();
         while(!events.isEmpty()){
-            EventHandler.getHandler().getEventQueue().clear();
             UHCEvent event = events.get(rand.nextInt(events.size()));
             EventHandler.getHandler().addEvent(event);
             plugin.getLogger().info("Added event:" + event.getName());
@@ -87,25 +99,20 @@ public class GameControler {
         //Set the world border to 2500 size
         for(World world : Bukkit.getServer().getWorlds()){
             world.getWorldBorder().setCenter(0,0);
-            world.getWorldBorder().setSize(5000);
+            world.getWorldBorder().setSize(1500);
         }
+
         //Start The CountDown
         finalCountDown = new Countdown(10800,plugin);
         firstWBCountdown = new Countdown(7200,plugin);
         secondWBCountdown = new Countdown(9000,plugin);
 
-        firstWBCountdown.addLastTask(new WorldBorderReduceTask(3500,900));
+        firstWBCountdown.addLastTask(new WorldBorderReduceTask(1000,900));
         secondWBCountdown.addLastTask(new WorldBorderReduceTask(200,1800));
 
         //Start the UI updater
         UIupdater updater = new UIupdater(plugin);
         updater.runTaskTimer(plugin,0,3);
-
-        //Register the game players
-        for(Player player : plugin.getServer().getOnlinePlayers()){
-            currentPlayers.clear();
-            currentPlayers.add(player.getUniqueId());
-        }
 
         //Start the win detector
         winDetector = new WinDetector().runTaskTimer(plugin,300,20);
