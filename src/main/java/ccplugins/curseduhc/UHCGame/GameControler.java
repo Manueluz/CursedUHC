@@ -8,6 +8,7 @@ import ccplugins.curseduhc.UHCGame.GameCommands.GameCommands;
 
 
 import ccplugins.curseduhc.UHCGame.UI.UIupdater;
+import ccplugins.curseduhc.UHCGame.WinDetection.WinDetector;
 import ccplugins.curseduhc.UHCGame.WorldBorderTasks.WorldBorderReduceTask;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
@@ -15,6 +16,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,6 +26,9 @@ public class GameControler {
 
     private static GameControler controler;
     private Countdown finalCountDown;
+    private Countdown firstWBCountdown;
+    private Countdown secondWBCountdown;
+    private BukkitTask winDetector;
     private ArrayList<UUID> currentPlayers;
     private boolean GameState;
     private final Plugin plugin;
@@ -45,6 +50,14 @@ public class GameControler {
     public Countdown getFinalCountDown(){return finalCountDown;}
     public boolean isGameStarted(){return GameState;}
 
+    public void stopGame(){
+        GameState = false;
+        firstWBCountdown.pauseCountdown();
+        secondWBCountdown.pauseCountdown();
+        finalCountDown.pauseCountdown();
+        winDetector.cancel();
+        EventHandler.getHandler().stop();
+    }
     public void startGame(){
         if(GameState){return;}
         GameState = true;
@@ -75,11 +88,11 @@ public class GameControler {
         }
         //Start The CountDown
         finalCountDown = new Countdown(10800,plugin);
-        Countdown firstWorldBorderReduce = new Countdown(7200,plugin);
-        Countdown secondWorldBorderReduce = new Countdown(9000,plugin);
+        firstWBCountdown = new Countdown(7200,plugin);
+        secondWBCountdown = new Countdown(9000,plugin);
 
-        firstWorldBorderReduce.addLastTask(new WorldBorderReduceTask(3500,900));
-        secondWorldBorderReduce.addLastTask(new WorldBorderReduceTask(200,1800));
+        firstWBCountdown.addLastTask(new WorldBorderReduceTask(3500,900));
+        secondWBCountdown.addLastTask(new WorldBorderReduceTask(200,1800));
 
         //Start the UI updater
         UIupdater updater = new UIupdater(plugin);
@@ -89,5 +102,8 @@ public class GameControler {
         for(Player player : plugin.getServer().getOnlinePlayers()){
             currentPlayers.add(player.getUniqueId());
         }
+
+        //Start the win detector
+        winDetector = new WinDetector().runTaskTimer(plugin,300,20);
     }
 }
