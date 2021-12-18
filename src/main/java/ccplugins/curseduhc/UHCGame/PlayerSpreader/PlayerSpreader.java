@@ -20,7 +20,6 @@ public class PlayerSpreader {
         double degrees = 0;
 
         for(UUID id : players){
-
             Player player = Bukkit.getPlayer(id);
 
             player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,10,100));

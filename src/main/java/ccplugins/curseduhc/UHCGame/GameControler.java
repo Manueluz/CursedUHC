@@ -98,6 +98,8 @@ public class GameControler {
 
         //Set the world border to 2500 size
         for(World world : Bukkit.getServer().getWorlds()){
+            world.setGameRule(GameRule.NATURAL_REGENERATION,false);
+            world.setGameRule(GameRule.REDUCED_DEBUG_INFO,false);
             world.getWorldBorder().setCenter(0,0);
             world.getWorldBorder().setSize(1500);
         }
