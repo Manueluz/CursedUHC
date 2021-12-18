@@ -16,7 +16,7 @@ public class RejoinEnforcer implements Listener {
         }else {
             event.getPlayer().setGameMode(GameMode.SURVIVAL);
         }
-        if(GameControler.getControler().isGameStarted() && GameControler.getControler().getGamePlayers().contains(event.getPlayer().getUniqueId())){
+        if(GameControler.getControler().isGameStarted() && !GameControler.getControler().getGamePlayers().contains(event.getPlayer().getUniqueId())){
             event.getPlayer().setGameMode(GameMode.SPECTATOR);
             event.getPlayer().sendMessage(ChatColor.GOLD +""+ ChatColor.BOLD +"You have joined after the game started you are now an spectator");
         }
