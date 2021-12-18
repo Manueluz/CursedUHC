@@ -101,6 +101,7 @@ public class GameControler {
 
         //Register the game players
         for(Player player : plugin.getServer().getOnlinePlayers()){
+            currentPlayers.clear();
             currentPlayers.add(player.getUniqueId());
         }
 
