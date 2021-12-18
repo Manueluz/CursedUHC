@@ -1,6 +1,7 @@
 package ccplugins.curseduhc.UHCGame;
 
 
+import ccplugins.curseduhc.DeathHandler.DeathListener;
 import ccplugins.curseduhc.UHCGame.Countdown.Countdown;
 import ccplugins.curseduhc.UHCGame.Events.CustomEvents.*;
 import ccplugins.curseduhc.UHCGame.Events.EventHandler;
@@ -61,7 +62,8 @@ public class GameControler {
     public void startGame(){
         if(GameState){return;}
         GameState = true;
-
+        //Clean the dead players
+        DeathListener.getDeadPlayers().clear();
         //Start The events
         ArrayList<UHCEvent> events = new ArrayList<>();
         events.add(new BoltStorm(plugin));
