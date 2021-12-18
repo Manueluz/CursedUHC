@@ -1,6 +1,5 @@
 package ccplugins.curseduhc.UHCGame.Countdown;
 
-import ccplugins.curseduhc.UHCGame.GameControler;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -13,7 +12,7 @@ public class Countdown {
     long remainingTime;
     private BukkitTask updater;
     private final Plugin plugin;
-    private ArrayList<FinishTask> tasks;
+    private final ArrayList<FinishTask> tasks;
 
     public Countdown(long duration, Plugin plugin){
         startTime = duration;
