@@ -29,8 +29,8 @@ public class WinDetector extends BukkitRunnable {
                 Player player2 = Bukkit.getPlayer(players.get(1));
                 if(TeamHandler.getHandler().hasTeam(player1) && TeamHandler.getHandler().getTeam(player1).isMember(player2)){
                     Bukkit.getServer().broadcastMessage(player1.getDisplayName() + " y " + player2.getDisplayName() + " han ganado la primera edicion de Cursed UHC!!!");
+                    GameControler.getControler().stopGame();
                 }
-                GameControler.getControler().stopGame();
         }
     }
 }
