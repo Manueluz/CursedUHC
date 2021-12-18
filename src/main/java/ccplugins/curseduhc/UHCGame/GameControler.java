@@ -10,6 +10,7 @@ import ccplugins.curseduhc.UHCGame.GameCommands.GameCommands;
 import ccplugins.curseduhc.UHCGame.UI.UIupdater;
 import ccplugins.curseduhc.UHCGame.WorldBorderTasks.WorldBorderReduceTask;
 import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -87,6 +88,11 @@ public class GameControler {
         //Register the game players
         for(Player player : plugin.getServer().getOnlinePlayers()){
             currentPlayers.add(player.getUniqueId());
+        }
+
+        //Hide the coordinates
+        for(World world : plugin.getServer().getWorlds()){
+            world.setGameRule(GameRule.REDUCED_DEBUG_INFO,true);
         }
     }
 }
