@@ -43,15 +43,9 @@ public class BossBarUI {
     public static BossBarUI getBossBarUI(){return bossBarUI;}
 
     public void update(){
+        String remainingTime = GameControler.getControler().getFinalCountDown().toString();
         Countdown finalCountdown = GameControler.getControler().getFinalCountDown();
-
         long totalSecs = finalCountdown.getRemainingSeconds();
-
-        int hours = (int) (totalSecs / 3600);
-        int minutes = (int) ((totalSecs % 3600) / 60);
-        int seconds = (int) (totalSecs % 60);
-
-        String remainingTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
 
 
         if(totalSecs >= 0) {

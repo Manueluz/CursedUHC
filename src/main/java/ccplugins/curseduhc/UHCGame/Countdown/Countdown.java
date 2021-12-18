@@ -1,5 +1,6 @@
 package ccplugins.curseduhc.UHCGame.Countdown;
 
+import ccplugins.curseduhc.UHCGame.GameControler;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -39,6 +40,15 @@ public class Countdown {
     }
     public long getStartTime(){
         return startTime;
+    }
+    public String toString(){
+        long totalSecs = getRemainingSeconds();
+
+        int hours = (int) (totalSecs / 3600);
+        int minutes = (int) ((totalSecs % 3600) / 60);
+        int seconds = (int) (totalSecs % 60);
+
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
     private static class CountUpdater extends BukkitRunnable {
