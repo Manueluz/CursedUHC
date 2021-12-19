@@ -19,7 +19,7 @@ public class TeamCommands implements CommandExecutor {
                 if(args[0].equals("setName")) {
                     if(sender instanceof Player && handler.hasTeam((Player) sender)){
                         if(handler.getTeam(((Player) sender)).getName().equals("Alone")) {
-                            if (args[0].length() < 5) {
+                            if (args[1].length() < 5) {
                                 handler.getTeam((Player) sender).setName(args[1].replace("%", "%%"));
                                 sender.sendMessage(ChatColor.of(new Color(50, 255, 100)) + "Changed the name of your team to:" + args[1]);
                             } else {
@@ -28,11 +28,10 @@ public class TeamCommands implements CommandExecutor {
                         }else {
                             sender.sendMessage(ChatColor.of(new Color(255,50,100)) + "Your team already has a name!!");
                         }
-                        return true;
                     }else {
                         sender.sendMessage(ChatColor.of(new Color(255,50,100)) + "You dont have a team!");
-                        return true;
                     }
+                    return true;
                 }
             default:
                 return false;
