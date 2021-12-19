@@ -5,6 +5,7 @@ import ccplugins.curseduhc.ChatHandler.ChatCommands.ChatCommandListener;
 import ccplugins.curseduhc.UHCTeams.TeamHandler;
 import net.md_5.bungee.api.ChatColor;
 
+import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -40,7 +41,12 @@ public class ChatListener implements Listener {
         if(!playerChatModes.containsKey(event.getPlayer().getUniqueId())){
             playerChatModes.put(event.getPlayer().getUniqueId(),0);
         }
-
+        if(event.getPlayer().getGameMode() == GameMode.SPECTATOR){
+            ChatColor b = ChatColor.of(new Color(161, 153, 0));
+            ChatColor n = ChatColor.of(new Color(121, 121, 121));
+            event.setFormat(b+"["+n+"Spectator"+b+"]["+n+"%1$s"+b+"]: "+ ChatColor.of(new Color(90, 90, 90)) +"%2$s");
+            return;
+        }
         switch (playerChatModes.get(event.getPlayer().getUniqueId())){
             case 0:
                 ChatColor b = ChatColor.of(new Color(255, 218, 0));
