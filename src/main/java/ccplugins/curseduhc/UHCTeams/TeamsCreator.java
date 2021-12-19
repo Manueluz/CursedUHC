@@ -34,7 +34,7 @@ public class TeamsCreator extends BukkitRunnable {
             if(handler.hasTeam(player)){continue;}
             if(!GameControler.getControler().getGamePlayers().contains(player.getUniqueId())){continue;}
 
-            Collection<Entity> nearPlayers = player.getWorld().getNearbyEntities(player.getLocation(),5,5,5, en->en instanceof Player);
+            Collection<Entity> nearPlayers = player.getWorld().getNearbyEntities(player.getLocation(),50,50,50, en->en instanceof Player);
             for(Entity entity : nearPlayers){
                 Player p = (Player) entity;
                 if(p.getUniqueId() == player.getUniqueId() || !GameControler.getControler().getGamePlayers().contains(p.getUniqueId()) || handler.hasTeam(p) || DeathListener.getDeadPlayers().contains(p.getUniqueId())){continue;}
