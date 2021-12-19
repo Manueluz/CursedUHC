@@ -3,7 +3,6 @@ package ccplugins.curseduhc.UHCGame.WinDetection;
 import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
-import org.bukkit.inventory.meta.FireworkEffectMeta;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -26,7 +25,7 @@ public class WinAnimation extends BukkitRunnable {
     }
     @Override
     public void run() {
-        for(int i = 0; i < 18; i++){
+        for(int i = 0; i < 10; i++){
             Location location = new Location(loc.getWorld(),0,0,0);
 
             location.add(loc);
@@ -34,7 +33,7 @@ public class WinAnimation extends BukkitRunnable {
 
             int x = rand.nextInt(500)-250;
             int z = rand.nextInt(500)-250;
-            int y = location.getWorld().getHighestBlockYAt(x,z);
+            int y = location.getWorld().getHighestBlockYAt(x,z)+3;
 
             location.add(x,y,z);
 
