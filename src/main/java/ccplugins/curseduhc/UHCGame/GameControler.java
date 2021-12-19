@@ -69,7 +69,7 @@ public class GameControler {
             currentPlayers.add(player.getUniqueId());
         }
         //Teleport the game players
-        PlayerSpreader.spreadPlayers(plugin.getServer().getWorld("world"), 700,currentPlayers);
+        PlayerSpreader.spreadPlayers(plugin.getServer().getWorld("world"), 2400, currentPlayers);
 
         GameState = true;
 
@@ -101,7 +101,7 @@ public class GameControler {
             world.setGameRule(GameRule.NATURAL_REGENERATION,false);
             world.setGameRule(GameRule.REDUCED_DEBUG_INFO,false);
             world.getWorldBorder().setCenter(0,0);
-            world.getWorldBorder().setSize(1500);
+            world.getWorldBorder().setSize(5000);
         }
 
         //Start The CountDown
@@ -109,7 +109,7 @@ public class GameControler {
         firstWBCountdown = new Countdown(7200,plugin);
         secondWBCountdown = new Countdown(9000,plugin);
 
-        firstWBCountdown.addLastTask(new WorldBorderReduceTask(1000,900));
+        firstWBCountdown.addLastTask(new WorldBorderReduceTask(3750,900));
         secondWBCountdown.addLastTask(new WorldBorderReduceTask(200,1800));
 
         //Start the UI updater
