@@ -17,7 +17,10 @@ public class Team {
     }
 
     public ArrayList<UUID> getMembers(){return members;}
+
     public String getName(){return name;}
+
+    public void setName(String name) {this.name = name;}
 
     public boolean isMember(Player player){
         for(UUID id : members){
