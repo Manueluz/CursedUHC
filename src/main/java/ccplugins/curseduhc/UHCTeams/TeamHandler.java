@@ -1,5 +1,6 @@
 package ccplugins.curseduhc.UHCTeams;
 
+import ccplugins.curseduhc.UHCTeams.TeamCommands.TeamCommandTabCompleter;
 import ccplugins.curseduhc.UHCTeams.TeamCommands.TeamCommands;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Sound;
@@ -30,6 +31,7 @@ public class TeamHandler {
         listener.runTaskTimer(plugin,0,50);
         plugin.getServer().getPluginManager().registerEvents(new AttacksListener(),plugin);
         plugin.getCommand("team").setExecutor(new TeamCommands());
+        plugin.getCommand("team").setTabCompleter(new TeamCommandTabCompleter());
     }
 
     public static TeamHandler getHandler(){
