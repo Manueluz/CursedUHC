@@ -15,8 +15,7 @@ import java.util.UUID;
 public class WinDetector extends BukkitRunnable {
     @Override
     public void run() {
-        ArrayList<UUID> players = GameControler.getControler().getGamePlayers();
-        players.removeIf(player -> DeathListener.getDeadPlayers().contains(player));
+        ArrayList<UUID> players = GameControler.getControler().getAlivePlayers();
 
         switch (players.size()){
             case 1:
