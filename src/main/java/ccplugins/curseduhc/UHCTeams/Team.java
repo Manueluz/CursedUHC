@@ -7,12 +7,17 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Team {
+
     private final ArrayList<UUID> members;
+    private String name;
 
     public Team(ArrayList<Player> members){
         this.members = new ArrayList<>();
         members.forEach(member -> this.members.add(member.getUniqueId()));
     }
+
+    public ArrayList<UUID> getMembers(){return members;}
+    public String getName(){return name;}
 
     public boolean isMember(Player player){
         for(UUID id : members){
@@ -21,10 +26,6 @@ public class Team {
             }
         }
         return false;
-    }
-
-    public ArrayList<UUID> getMembers(){
-        return members;
     }
 
     public void sendMessage(String message){
