@@ -15,7 +15,7 @@ public class HungerPlague extends UHCEvent {
     @Override
     public void update() {
         for(Player player : plugin.getServer().getOnlinePlayers()){
-            player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER,30,1));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER,30,4));
         }
     }
 }
