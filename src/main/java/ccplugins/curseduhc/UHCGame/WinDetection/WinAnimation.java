@@ -60,7 +60,7 @@ public class WinAnimation extends BukkitRunnable {
         radius += 0.1f;
         angle += 2f;
 
-        if (angle > 360*6){
+        if (angle > 360*8){
             this.cancel();
         }
     }
