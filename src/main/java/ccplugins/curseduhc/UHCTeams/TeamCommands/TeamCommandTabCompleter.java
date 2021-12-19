@@ -13,6 +13,6 @@ public class TeamCommandTabCompleter implements TabCompleter {
         if(args.length == 1){
             return Collections.singletonList("setName");
         }
-        return null;
+        return Collections.singletonList("");
     }
 }
