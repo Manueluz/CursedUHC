@@ -45,6 +45,10 @@ public class TeamHandler {
         }
     }
 
+    public void clearTeams(){
+        teams.clear();
+    }
+
     public Team getTeam(Player member){
         return teams.get(member.getUniqueId());
     }

@@ -12,6 +12,7 @@ import ccplugins.curseduhc.UHCGame.PlayerSpreader.PlayerSpreader;
 import ccplugins.curseduhc.UHCGame.UI.UIupdater;
 import ccplugins.curseduhc.UHCGame.WinDetection.WinDetector;
 import ccplugins.curseduhc.UHCGame.WorldBorderTasks.WorldBorderReduceTask;
+import ccplugins.curseduhc.UHCTeams.TeamHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.World;
@@ -76,7 +77,11 @@ public class GameControler {
         //Teleport the game players
         PlayerSpreader.spreadPlayers(plugin.getServer().getWorld("world"), 2400, currentPlayers);
 
+        //Change the game state
         GameState = true;
+
+        //Clear the teams
+        TeamHandler.getHandler().clearTeams();
 
         //Clean the dead players
         DeathListener.getDeadPlayers().clear();
