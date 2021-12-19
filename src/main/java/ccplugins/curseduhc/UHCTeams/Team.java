@@ -14,6 +14,7 @@ public class Team {
     public Team(ArrayList<Player> members){
         this.members = new ArrayList<>();
         members.forEach(member -> this.members.add(member.getUniqueId()));
+        name = "Alone";
     }
 
     public ArrayList<UUID> getMembers(){return members;}

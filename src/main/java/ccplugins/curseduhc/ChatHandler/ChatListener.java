@@ -23,7 +23,7 @@ public class ChatListener implements Listener {
 
     private ChatListener(){
         playerChatModes = new HashMap<>();
-    };
+    }
 
     public static void init(JavaPlugin plugin){
         if(listener != null){return;}
@@ -51,7 +51,11 @@ public class ChatListener implements Listener {
             case 0:
                 ChatColor b = ChatColor.of(new Color(255, 218, 0));
                 ChatColor n = ChatColor.of(new Color(0, 246, 88));
-                event.setFormat(b+"["+n+"Global"+b+"]["+n+"%1$s"+b+"]: "+ ChatColor.of(new Color(198, 198, 198)) +"%2$s");
+                if(TeamHandler.getHandler().hasTeam(event.getPlayer())) {
+                    event.setFormat(b + "[" + n + TeamHandler.getHandler().getTeam(event.getPlayer()).getName() + b + "][" + n + "%1$s" + b + "]: " + ChatColor.of(new Color(198, 198, 198)) + "%2$s");
+                }else{
+                    event.setFormat(b + "[" + n + "Alone" + b + "][" + n + "%1$s" + b + "]: " + ChatColor.of(new Color(198, 198, 198)) + "%2$s");
+                }
                 break;
             case 1:
                 if(TeamHandler.getHandler().hasTeam(event.getPlayer())) {
