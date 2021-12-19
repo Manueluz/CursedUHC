@@ -1,10 +1,13 @@
 package ccplugins.curseduhc.UHCGame.Events.CustomEvents;
 
+import ccplugins.curseduhc.UHCGame.GameControler;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 
 public class SuddenDeath extends UHCEvent {
@@ -22,14 +25,16 @@ public class SuddenDeath extends UHCEvent {
             isDone = true;
 
             double lowestHealth = 20;
-            for(Player player : plugin.getServer().getOnlinePlayers()){
+            for(UUID id : GameControler.getControler().getAlivePlayers()){
+                Player player = Bukkit.getPlayer(id);
                 if(player.getHealth() < lowestHealth){
                     lowestHealth = player.getHealth();
                 }
             }
 
             ArrayList<Player> lowList = new ArrayList<>();
-            for(Player player : plugin.getServer().getOnlinePlayers()){
+            for(UUID id : GameControler.getControler().getAlivePlayers()){
+                Player player = Bukkit.getPlayer(id);
                 if(player.getHealth() == lowestHealth){
                     lowList.add(player);
                 }

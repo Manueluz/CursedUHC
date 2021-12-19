@@ -1,11 +1,14 @@
 package ccplugins.curseduhc.UHCGame.Events.CustomEvents;
 
 
+import ccplugins.curseduhc.UHCGame.GameControler;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class BoltStorm extends UHCEvent {
 
@@ -20,7 +23,8 @@ public class BoltStorm extends UHCEvent {
 
     @Override
     public void update() {
-        for(Player player : plugin.getServer().getOnlinePlayers()){
+        for(UUID id : GameControler.getControler().getAlivePlayers()){
+            Player player = Bukkit.getPlayer(id);
             Location location = player.getLocation();
 
             int x = location.getBlockX() + rand.nextInt(50)-25;

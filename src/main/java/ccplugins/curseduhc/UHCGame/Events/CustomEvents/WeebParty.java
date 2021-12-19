@@ -1,10 +1,14 @@
 package ccplugins.curseduhc.UHCGame.Events.CustomEvents;
 
-import org.bukkit.Material;
+import ccplugins.curseduhc.UHCGame.GameControler;
+import org.bukkit.Bukkit;
+
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.UUID;
 
 public class WeebParty extends UHCEvent{
 
@@ -16,7 +20,8 @@ public class WeebParty extends UHCEvent{
 
     @Override
     public void update() {
-        for(Player player : plugin.getServer().getOnlinePlayers()){
+        for(UUID id : GameControler.getControler().getAlivePlayers()){
+            Player player = Bukkit.getPlayer(id);
             if(player.getWorld().getBlockAt(player.getLocation()).isLiquid()){
                 player.addPotionEffect(new PotionEffect(PotionEffectType.WITHER,30,1));
             }
