@@ -11,9 +11,8 @@ public abstract class UHCEvent extends BukkitRunnable {
     private long duration;
     Plugin plugin;
 
-    public UHCEvent(Plugin plugin){
-        this.plugin = plugin;
-    }
+    public UHCEvent(Plugin plugin){this.plugin = plugin;}
+
     public void startEvent(long duration){
         Timer timer = new Timer();
         timer.schedule(new Stopper(this),duration);
@@ -21,9 +20,7 @@ public abstract class UHCEvent extends BukkitRunnable {
     }
 
     @Override
-    public void run() {
-        update();
-    }
+    public void run() {update();}
 
     public abstract void update();
 
@@ -32,8 +29,8 @@ public abstract class UHCEvent extends BukkitRunnable {
     void setDuration(long duration){this.duration = duration;}
     public long getDuration() {return duration;}
 
-    private class Stopper extends TimerTask{
-        private UHCEvent event;
+    private static class Stopper extends TimerTask{
+        private final UHCEvent event;
         public Stopper(UHCEvent event){
             this.event = event;
         }
