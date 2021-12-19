@@ -13,7 +13,7 @@ import java.awt.*;
 public class ChatCommandListener implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(args == null || args.length > 1 || args[0].length() != 1){return false;}
+        if(args == null || args.length != 1 || args[0].length() != 1){return false;}
         switch (args[0]){
             case "G":
                 ChatListener.getPlayerChatModes().put(((Player) sender).getUniqueId(),0);
