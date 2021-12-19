@@ -10,7 +10,7 @@ import java.util.List;
 public class TeamCommandTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if(args.length == 0){
+        if(args.length == 1){
             return Collections.singletonList("setName");
         }
         return null;
