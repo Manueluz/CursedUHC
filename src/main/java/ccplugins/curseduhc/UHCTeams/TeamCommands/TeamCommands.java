@@ -31,6 +31,7 @@ public class TeamCommands implements CommandExecutor {
                         return true;
                     }else {
                         sender.sendMessage(ChatColor.of(new Color(255,50,100)) + "You dont have a team!");
+                        return true;
                     }
                 }
             default:
