@@ -21,7 +21,8 @@ public class PlayerSpreader {
 
         for(UUID id : players){
             Player player = Bukkit.getPlayer(id);
-
+            if(player == null){continue;}
+            player.getInventory().clear();
             player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,10,100));
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,10,100));
             player.addPotionEffect(new PotionEffect(PotionEffectType.HEAL,10,100));
@@ -29,14 +30,10 @@ public class PlayerSpreader {
 
             player.teleport(new Location(world,x,world.getHighestBlockYAt(x,z)+1,z));
 
-            int newX = (int) (x*Math.cos(Math.toRadians(degrees)) - z*Math.sin(Math.toRadians(degrees)));
-            int newZ = (int) (x*Math.sin(Math.toRadians(degrees)) + z*Math.cos(Math.toRadians(degrees)));
-
-            x = newX;
-            z = newZ;
+            x = (int) (radius*Math.cos(Math.toRadians(degrees)));
+            z = (int) (radius*Math.sin(Math.toRadians(degrees)));
 
             degrees += (double)360/players.size();
-
             player.teleport(new Location(world,x,world.getHighestBlockYAt(x,z)+1,z));
         }
     }
