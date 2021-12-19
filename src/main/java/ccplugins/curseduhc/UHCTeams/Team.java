@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Team {
-    private ArrayList<UUID> members;
+    private final ArrayList<UUID> members;
 
     public Team(ArrayList<Player> members){
         this.members = new ArrayList<>();
