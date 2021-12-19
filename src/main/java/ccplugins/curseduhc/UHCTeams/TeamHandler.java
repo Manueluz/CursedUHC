@@ -1,9 +1,11 @@
 package ccplugins.curseduhc.UHCTeams;
 
+import ccplugins.curseduhc.UHCTeams.TeamCommands.TeamCommands;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -21,12 +23,13 @@ public class TeamHandler {
         teams = new HashMap<>();
     }
 
-    public static void init(Plugin plugin){
+    public static void init(JavaPlugin plugin){
         if(handler != null){return;}
         handler = new TeamHandler(plugin);
         TeamsCreator listener = new TeamsCreator(plugin);
         listener.runTaskTimer(plugin,0,50);
         plugin.getServer().getPluginManager().registerEvents(new AttacksListener(),plugin);
+        plugin.getCommand("team").setExecutor(new TeamCommands());
     }
 
     public static TeamHandler getHandler(){
