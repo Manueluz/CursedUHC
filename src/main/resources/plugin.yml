@@ -19,3 +19,6 @@ commands:
   eventQueue:
     usage: /<command>
     description: prints the event queue
+  team:
+    usage: /<command> setName (Name)
+    description: Command for managing teams
