@@ -51,6 +51,11 @@ public class GameControler {
     public ArrayList<UUID> getGamePlayers(){return  new ArrayList<>(currentPlayers);}
     public Countdown getFinalCountDown(){return finalCountDown;}
     public boolean isGameStarted(){return GameState;}
+    public ArrayList<UUID> getAlivePlayers(){
+        ArrayList<UUID> players = getGamePlayers();
+        players.removeIf(player -> DeathListener.getDeadPlayers().contains(player));
+        return players;
+    }
 
     public void stopGame(){
         GameState = false;
