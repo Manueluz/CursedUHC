@@ -14,9 +14,6 @@ public class PlayerSpreader {
     private PlayerSpreader(){}
 
     public static void spreadPlayers(World world, int radius, ArrayList<UUID> players){
-        int x = radius;
-        int z = 0;
-
         double degrees = 0;
 
         for(UUID id : players){
@@ -28,8 +25,8 @@ public class PlayerSpreader {
             player.addPotionEffect(new PotionEffect(PotionEffectType.HEAL,10,100));
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION,10,100));
 
-            x = (int) (radius*Math.cos(Math.toRadians(degrees)));
-            z = (int) (radius*Math.sin(Math.toRadians(degrees)));
+            int x = (int) (radius*Math.cos(Math.toRadians(degrees)));
+            int z = (int) (radius*Math.sin(Math.toRadians(degrees)));
 
             degrees += (double)360/players.size();
             player.teleport(new Location(world,x,world.getHighestBlockYAt(x,z)+1,z));
