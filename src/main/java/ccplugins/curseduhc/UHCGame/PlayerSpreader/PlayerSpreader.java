@@ -28,8 +28,6 @@ public class PlayerSpreader {
             player.addPotionEffect(new PotionEffect(PotionEffectType.HEAL,10,100));
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION,10,100));
 
-            player.teleport(new Location(world,x,world.getHighestBlockYAt(x,z)+1,z));
-
             x = (int) (radius*Math.cos(Math.toRadians(degrees)));
             z = (int) (radius*Math.sin(Math.toRadians(degrees)));
 
