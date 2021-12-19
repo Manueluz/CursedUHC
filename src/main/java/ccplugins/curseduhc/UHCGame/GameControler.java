@@ -48,7 +48,7 @@ public class GameControler {
     }
 
     public static GameControler getControler(){return controler;}
-    public ArrayList<UUID> getGamePlayers(){return currentPlayers;}
+    public ArrayList<UUID> getGamePlayers(){return  new ArrayList<>(currentPlayers);}
     public Countdown getFinalCountDown(){return finalCountDown;}
     public boolean isGameStarted(){return GameState;}
 
