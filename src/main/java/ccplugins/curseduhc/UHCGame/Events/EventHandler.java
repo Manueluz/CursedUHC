@@ -52,9 +52,11 @@ public class EventHandler {
         currentCountdown = new Countdown(TIME_BETWEEN_EVENTS,plugin);
         currentCountdown.addLastTask(new EventQueueUpdate());
     }
-    public void update(){
-        currentCountdown = new Countdown(TIME_BETWEEN_EVENTS,plugin);
-        currentCountdown.addLastTask(new EventQueueUpdate());
+    public void update(boolean resetCountdown){
+        if(resetCountdown) {
+            currentCountdown = new Countdown(TIME_BETWEEN_EVENTS, plugin);
+            currentCountdown.addLastTask(new EventQueueUpdate());
+        }
         eventQueue.pop().startEvent();
     }
     public void stop(){
