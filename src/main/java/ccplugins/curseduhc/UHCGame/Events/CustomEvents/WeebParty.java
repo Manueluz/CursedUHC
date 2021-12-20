@@ -28,7 +28,7 @@ public class WeebParty extends UHCEvent{
                         return;
                     }
                 }
-                player.addPotionEffect(new PotionEffect(PotionEffectType.WITHER,30,1));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.WITHER,40,1));
             }
         }
     }

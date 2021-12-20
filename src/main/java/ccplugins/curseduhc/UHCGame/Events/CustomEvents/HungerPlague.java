@@ -26,7 +26,7 @@ public class HungerPlague extends UHCEvent {
                     return;
                 }
             }
-            player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER,30,3));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER,40,4));
         }
     }
     @Override public void end() {}
