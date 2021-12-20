@@ -20,7 +20,13 @@ public class HungerPlague extends UHCEvent {
     public void update() {
         for(UUID id : GameControler.getControler().getAlivePlayers()){
             Player player = Bukkit.getPlayer(id);
-            player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER,30,4));
+            //If he already has the effect and we set it again the next tick minecraft will bug and cancel the effect
+            for(PotionEffect effect : player.getActivePotionEffects()){
+                if(effect.getType() == PotionEffectType.HUNGER){
+                    return;
+                }
+            }
+            player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER,30,3));
         }
     }
     @Override public void end() {}

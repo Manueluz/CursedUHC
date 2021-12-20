@@ -22,6 +22,12 @@ public class WeebParty extends UHCEvent{
         for(UUID id : GameControler.getControler().getAlivePlayers()){
             Player player = Bukkit.getPlayer(id);
             if(player.getWorld().getBlockAt(player.getLocation()).isLiquid()){
+                //If he already has the effect and we set it again the next tick minecraft will bug and cancel the effect
+                for(PotionEffect effect : player.getActivePotionEffects()){
+                    if(effect.getType() == PotionEffectType.WITHER){
+                        return;
+                    }
+                }
                 player.addPotionEffect(new PotionEffect(PotionEffectType.WITHER,30,1));
             }
         }
