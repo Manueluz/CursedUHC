@@ -35,7 +35,7 @@ public class SilverfishParty extends UHCEvent {
         private Boolean enabled;
 
         public void enable(){this.enabled = true;}
-        public void disable(){this.enabled = true;}
+        public void disable(){this.enabled = false;}
 
         @EventHandler
         public void onBlockBreak(BlockBreakEvent event){
