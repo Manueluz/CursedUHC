@@ -1,21 +1,21 @@
 package ccplugins.curseduhc.UHCGame.Events.CustomEvents;
 
+import ccplugins.curseduhc.UHCGame.Countdown.Countdown;
+import ccplugins.curseduhc.UHCGame.Countdown.FinishTask;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public abstract class UHCEvent extends BukkitRunnable {
+
     private String name;
     private long duration;
     Plugin plugin;
 
     public UHCEvent(Plugin plugin){this.plugin = plugin;}
 
-    public void startEvent(long duration){
-        Timer timer = new Timer();
-        timer.schedule(new Stopper(this),duration);
+    public void startEvent(){
+        Countdown countdown = new Countdown(duration/1000,plugin);
+        countdown.addLastTask(new Stopper(this));
         this.runTaskTimer(plugin,0,10);
     }
 
@@ -27,9 +27,9 @@ public abstract class UHCEvent extends BukkitRunnable {
     public String getName() {return name;}
     void setName(String name) {this.name = name;}
     void setDuration(long duration){this.duration = duration;}
-    public long getDuration() {return duration;}
 
-    private static class Stopper extends TimerTask{
+
+    private static class Stopper extends FinishTask {
         private final UHCEvent event;
         public Stopper(UHCEvent event){
             this.event = event;
