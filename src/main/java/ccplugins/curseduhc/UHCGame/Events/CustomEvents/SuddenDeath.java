@@ -1,10 +1,10 @@
 package ccplugins.curseduhc.UHCGame.Events.CustomEvents;
 
 import ccplugins.curseduhc.UHCGame.GameControler;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -14,13 +14,14 @@ public class SuddenDeath extends UHCEvent {
     private boolean isDone;
     public SuddenDeath(Plugin plugin) {
         super(plugin);
-        setDuration(100);
+        setDuration(1);
         setName("Sudden Death");
         isDone = false;
     }
 
     @Override
     public void update() {
+        Bukkit.getServer().broadcastMessage(ChatColor.RED + "WARNING USED DISCARDED EVENT");
         if (!isDone){
             isDone = true;
 
@@ -45,4 +46,5 @@ public class SuddenDeath extends UHCEvent {
             }
         }
     }
+    @Override public void end() {}
 }
