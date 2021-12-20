@@ -12,7 +12,7 @@ import java.util.UUID;
 public class HungerPlague extends UHCEvent {
     public HungerPlague(Plugin plugin) {
         super(plugin);
-        setDuration(120000);
+        setDuration(120);
         setName("Hunger Plague");
     }
 
@@ -23,4 +23,5 @@ public class HungerPlague extends UHCEvent {
             player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER,30,4));
         }
     }
+    @Override public void end() {}
 }

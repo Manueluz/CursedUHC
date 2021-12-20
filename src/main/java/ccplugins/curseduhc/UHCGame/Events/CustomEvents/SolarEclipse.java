@@ -6,7 +6,7 @@ import org.bukkit.plugin.Plugin;
 public class SolarEclipse extends UHCEvent {
     public SolarEclipse(Plugin plugin) {
         super(plugin);
-        setDuration(840000);
+        setDuration(840);
         setName("Solar Eclipse");
     }
 
@@ -16,4 +16,5 @@ public class SolarEclipse extends UHCEvent {
             world.setTime(16000);
         }
     }
+    @Override public void end() {}
 }

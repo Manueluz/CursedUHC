@@ -17,7 +17,7 @@ public class BoltStorm extends UHCEvent {
     public BoltStorm(Plugin plugin){
         super(plugin);
         setName("Bolt Storm");
-        setDuration(120000);
+        setDuration(120);
         rand = new Random();
     }
 
@@ -38,4 +38,5 @@ public class BoltStorm extends UHCEvent {
             location.getWorld().strikeLightning(location);
         }
     }
+    @Override public void end() {}
 }

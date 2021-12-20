@@ -6,7 +6,6 @@ import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
-
 import java.util.Random;
 
 public class Stonks extends UHCEvent {
@@ -14,7 +13,7 @@ public class Stonks extends UHCEvent {
     public Stonks(Plugin plugin) {
         super(plugin);
         setName("Stonks");
-        setDuration(120000);
+        setDuration(120);
         rand = new Random();
     }
 
@@ -33,4 +32,5 @@ public class Stonks extends UHCEvent {
             }
         }
     }
+    @Override public void end() {}
 }

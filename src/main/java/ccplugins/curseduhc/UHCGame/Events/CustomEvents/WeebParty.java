@@ -2,7 +2,6 @@ package ccplugins.curseduhc.UHCGame.Events.CustomEvents;
 
 import ccplugins.curseduhc.UHCGame.GameControler;
 import org.bukkit.Bukkit;
-
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
@@ -14,7 +13,7 @@ public class WeebParty extends UHCEvent{
 
     public WeebParty(Plugin plugin) {
         super(plugin);
-        setDuration(300000);
+        setDuration(300);
         setName("Weeb Party");
     }
 
@@ -27,4 +26,6 @@ public class WeebParty extends UHCEvent{
             }
         }
     }
+
+    @Override public void end() {}
 }

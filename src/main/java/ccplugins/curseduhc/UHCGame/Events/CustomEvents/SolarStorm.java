@@ -13,7 +13,7 @@ public class SolarStorm extends UHCEvent{
     public SolarStorm(Plugin plugin) {
         super(plugin);
         setName("Solar Storm");
-        setDuration(360000);
+        setDuration(360);
     }
 
     @Override
@@ -25,4 +25,5 @@ public class SolarStorm extends UHCEvent{
             }
         }
     }
+    @Override public void end() {}
 }
