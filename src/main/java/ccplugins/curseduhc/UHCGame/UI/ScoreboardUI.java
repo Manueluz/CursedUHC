@@ -1,7 +1,6 @@
 package ccplugins.curseduhc.UHCGame.UI;
 
 import ccplugins.curseduhc.UHCGame.Events.EventHandler;
-import ccplugins.curseduhc.UHCGame.GameControler;
 import ccplugins.curseduhc.UHCTeams.TeamHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -29,8 +28,6 @@ public class ScoreboardUI {
 
     public static ScoreboardUI getScoreboardUI(){return scoreboardUI;}
 
-
-
     public void update(){
 
         for(Player player : plugin.getServer().getOnlinePlayers()){
@@ -39,7 +36,7 @@ public class ScoreboardUI {
             Objective name = CreateObjective(scoreboard);
 
             String nextEventS = EventHandler.getHandler().nextEvent().getName();
-            String remainingTimeS = EventHandler.getHandler().getEventCountdown().toString().substring(4);;
+            String remainingTimeS = EventHandler.getHandler().getEventCountdown().toString().substring(3,8);
 
             name.getScore(ChatColor.GRAY+"    "+remainingTimeS).setScore(2);
             if(TeamHandler.getHandler().hasTeam(player)){
