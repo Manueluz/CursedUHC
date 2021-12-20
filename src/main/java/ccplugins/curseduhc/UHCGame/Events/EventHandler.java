@@ -1,20 +1,21 @@
 package ccplugins.curseduhc.UHCGame.Events;
 
+import ccplugins.curseduhc.UHCGame.Countdown.Countdown;
 import ccplugins.curseduhc.UHCGame.Events.CustomEvents.UHCEvent;
 import ccplugins.curseduhc.UHCGame.Events.EventCommands.EventCommands;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Stack;
-import java.util.Timer;
 
 public class EventHandler {
 
     private static final long TIME_BETWEEN_EVENTS = 1200000;
+
     private final Stack<UHCEvent> eventQueue;
     private static EventHandler handler;
     private final Plugin plugin;
-    private Timer timer;
+    private Countdown currentCountdown;
 
     private EventHandler(Plugin plugin){
         eventQueue = new Stack<>();
@@ -38,17 +39,23 @@ public class EventHandler {
         eventQueue.push(event);
     }
 
-
     public UHCEvent nextEvent(){
         return eventQueue.peek();
     }
-
-    public void start(){
-        timer = new Timer();
-        timer.scheduleAtFixedRate(new EventTimer(),TIME_BETWEEN_EVENTS,TIME_BETWEEN_EVENTS);
+    public Countdown getEventCountdown(){
+        return currentCountdown;
     }
 
+    public void start(){
+        currentCountdown = new Countdown(TIME_BETWEEN_EVENTS,plugin);
+        currentCountdown.addLastTask(new EventQueueUpdate());
+    }
+    public void update(){
+        currentCountdown = new Countdown(TIME_BETWEEN_EVENTS,plugin);
+        currentCountdown.addLastTask(new EventQueueUpdate());
+        eventQueue.pop().startEvent();
+    }
     public void stop(){
-        if(timer!=null)timer.cancel();
+        if(currentCountdown!=null)currentCountdown.pauseCountdown();
     }
 }
