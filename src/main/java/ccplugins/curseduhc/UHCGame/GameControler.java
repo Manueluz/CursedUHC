@@ -3,11 +3,8 @@ package ccplugins.curseduhc.UHCGame;
 
 import ccplugins.curseduhc.DeathHandler.DeathListener;
 import ccplugins.curseduhc.UHCGame.Countdown.Countdown;
-import ccplugins.curseduhc.UHCGame.Events.CustomEvents.*;
 import ccplugins.curseduhc.UHCGame.Events.EventHandler;
 import ccplugins.curseduhc.UHCGame.GameCommands.GameCommands;
-
-
 import ccplugins.curseduhc.UHCGame.PlayerSpreader.PlayerSpreader;
 import ccplugins.curseduhc.UHCGame.UI.UIupdater;
 import ccplugins.curseduhc.UHCGame.WinDetection.WinDetector;
@@ -22,7 +19,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.UUID;
 
 public class GameControler {
@@ -87,23 +83,7 @@ public class GameControler {
         DeathListener.getDeadPlayers().clear();
 
         //Start The events
-        ArrayList<UHCEvent> events = new ArrayList<>();
-        events.add(new BoltStorm(plugin));
-        events.add(new SolarStorm(plugin));
-        events.add(new SuddenDeath(plugin));
-        events.add(new TouchGrass(plugin));
-        events.add(new WeebParty(plugin));
-        events.add(new HungerPlague(plugin));
-        events.add(new SolarEclipse(plugin));
-        events.add(new Stonks(plugin));
-        Random rand = new Random();
-        EventHandler.getHandler().getEventQueue().clear();
-        while(!events.isEmpty()){
-            UHCEvent event = events.get(rand.nextInt(events.size()));
-            EventHandler.getHandler().addEvent(event);
-            plugin.getLogger().info("Added event:" + event.getName());
-            events.remove(event);
-        }
+        EventHandler.getHandler().loadEvents();
         EventHandler.getHandler().start();
 
         //Set the world border to 2500 size

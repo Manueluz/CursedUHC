@@ -1,11 +1,13 @@
 package ccplugins.curseduhc.UHCGame.Events;
 
 import ccplugins.curseduhc.UHCGame.Countdown.Countdown;
-import ccplugins.curseduhc.UHCGame.Events.CustomEvents.UHCEvent;
+import ccplugins.curseduhc.UHCGame.Events.CustomEvents.*;
 import ccplugins.curseduhc.UHCGame.Events.EventCommands.EventCommands;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Stack;
 
 public class EventHandler {
@@ -57,5 +59,25 @@ public class EventHandler {
     }
     public void stop(){
         if(currentCountdown!=null)currentCountdown.pauseCountdown();
+    }
+
+    public void loadEvents(){
+        ArrayList<UHCEvent> events = new ArrayList<>();
+        events.add(new BoltStorm(plugin));
+        events.add(new SolarStorm(plugin));
+        //events.add(new SuddenDeath(plugin)); -> Discarded
+        events.add(new SilverfishParty(plugin));
+        events.add(new TouchGrass(plugin));
+        events.add(new WeebParty(plugin));
+        events.add(new HungerPlague(plugin));
+        events.add(new SolarEclipse(plugin));
+        events.add(new Stonks(plugin));
+        Random rand = new Random();
+        getEventQueue().clear();
+        while(!events.isEmpty()){
+            UHCEvent event = events.get(rand.nextInt(events.size()));
+            addEvent(event);
+            events.remove(event);
+        }
     }
 }
