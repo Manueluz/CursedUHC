@@ -41,7 +41,7 @@ public class SilverfishParty extends UHCEvent {
         public void onBlockBreak(BlockBreakEvent event){
             if(enabled && rand.nextInt(100)<20){
                 World world = event.getBlock().getWorld();
-                for(int i = 0; i < rand.nextInt(2); i++){
+                for(int i = 0; i < rand.nextInt(2)+1; i++){
                     world.spawnEntity(event.getBlock().getLocation().add(0.5,0,0.5), EntityType.SILVERFISH);
                 }
             }
