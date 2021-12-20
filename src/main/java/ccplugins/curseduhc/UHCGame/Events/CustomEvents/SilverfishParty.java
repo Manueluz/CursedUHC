@@ -42,7 +42,7 @@ public class SilverfishParty extends UHCEvent {
             if(enabled && rand.nextInt(100)<20){
                 World world = event.getBlock().getWorld();
                 for(int i = 0; i < rand.nextInt(2); i++){
-                    world.spawnEntity(event.getBlock().getLocation(), EntityType.SILVERFISH);
+                    world.spawnEntity(event.getBlock().getLocation().add(0.5,0,0.5), EntityType.SILVERFISH);
                 }
             }
         }
