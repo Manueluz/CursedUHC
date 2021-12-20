@@ -24,7 +24,7 @@ public class BossBarUI {
 
     private BossBarUI(Plugin plugin){
         this.plugin = plugin;
-        bar = Bukkit.createBossBar(new NamespacedKey(plugin,"Time"),"Time remaining", BarColor.BLUE, BarStyle.SOLID);
+        bar = Bukkit.createBossBar(new NamespacedKey(plugin,"Time"),"Time remaining", BarColor.WHITE, BarStyle.SEGMENTED_20);
         bar.setVisible(true);
     }
 
@@ -47,14 +47,18 @@ public class BossBarUI {
         Countdown finalCountdown = GameControler.getControler().getFinalCountDown();
         long totalSecs = finalCountdown.getRemainingSeconds();
 
+        String g = ChatColor.of(new Color(121, 121, 121)) + "" + ChatColor.BOLD;
+        String b = ChatColor.of(new Color(189, 188, 188)) + "";
+        String B = ChatColor.of(new Color(255, 255, 255)) + "";
+        String r = ChatColor.of(new Color(255, 20, 90)) + "";
 
         if(totalSecs >= 0) {
-            bar.setTitle(ChatColor.of(new Color(4, 255, 225)) + "Time remaining: " + remainingTime);
+            bar.setTitle(g+"<"+b+ ChatColor.BOLD+"Time remaining: "+B+ ChatColor.BOLD+remainingTime+g+">");
             bar.setProgress(1 - ((double) (finalCountdown.getStartTime()) - finalCountdown.getRemainingSeconds()) / finalCountdown.getStartTime());
         }else {
             bar.setColor(BarColor.RED);
             bar.setProgress(1);
-            bar.setTitle(ChatColor.of(new Color(255, 20, 90))+"UHC deadmatch");
+            bar.setTitle(g+"</"+r+ChatColor.BOLD+"UHC deadmatch"+g+">");
         }
         for(Player player : plugin.getServer().getOnlinePlayers()){
             bar.addPlayer(player);
