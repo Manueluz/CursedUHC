@@ -15,6 +15,8 @@ public class SilverfishParty extends UHCEvent {
 
     public SilverfishParty(Plugin plugin) {
         super(plugin);
+        setName("Silverfish Party");
+        setDuration(180);
     }
 
     @Override
