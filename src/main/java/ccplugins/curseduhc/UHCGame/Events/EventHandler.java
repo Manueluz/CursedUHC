@@ -2,6 +2,7 @@ package ccplugins.curseduhc.UHCGame.Events;
 
 import ccplugins.curseduhc.UHCGame.Countdown.Countdown;
 import ccplugins.curseduhc.UHCGame.Events.CustomEvents.*;
+import ccplugins.curseduhc.UHCGame.Events.EventCommands.EventCommandTabCompleter;
 import ccplugins.curseduhc.UHCGame.Events.EventCommands.EventCommands;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,7 +13,7 @@ import java.util.Stack;
 
 public class EventHandler {
 
-    private static final long TIME_BETWEEN_EVENTS = 1200000;
+    private static final long TIME_BETWEEN_EVENTS = 1200;
 
     private final Stack<UHCEvent> eventQueue;
     private static EventHandler handler;
@@ -28,6 +29,7 @@ public class EventHandler {
         if(handler!=null){return;}
         handler = new EventHandler(plugin);
         plugin.getCommand("eventQueue").setExecutor(new EventCommands());
+        plugin.getCommand("eventQueue").setTabCompleter(new EventCommandTabCompleter());
     }
 
     public Stack<UHCEvent> getEventQueue() {
