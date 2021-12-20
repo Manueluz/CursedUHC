@@ -40,6 +40,9 @@ public class Countdown {
     public long getStartTime(){
         return startTime;
     }
+    public void setRemainingSeconds(long seconds){
+        this.remainingTime = seconds;
+    }
     public String toString(){
         long totalSecs = getRemainingSeconds();
 
