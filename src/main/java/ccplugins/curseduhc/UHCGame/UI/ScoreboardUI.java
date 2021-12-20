@@ -39,7 +39,7 @@ public class ScoreboardUI {
             Objective name = CreateObjective(scoreboard);
 
             String nextEventS = EventHandler.getHandler().nextEvent().getName();
-            String remainingTimeS = GameControler.getControler().getFinalCountDown().toString();
+            String remainingTimeS = EventHandler.getHandler().getEventCountdown().toString().substring(4);;
 
             name.getScore(ChatColor.GRAY+"    "+remainingTimeS).setScore(2);
             if(TeamHandler.getHandler().hasTeam(player)){
@@ -61,11 +61,11 @@ public class ScoreboardUI {
         name.setDisplaySlot(DisplaySlot.SIDEBAR);
         name.setDisplayName(ChatColor.GOLD+""+ChatColor.BOLD+">--"+ChatColor.YELLOW+""+ChatColor.BOLD+"Cursed UHC"+ChatColor.GOLD+""+ChatColor.BOLD+"--<");
         name.getScore("    ").setScore(10);
-        name.getScore(ChatColor.RED + "    Proximo Evento:").setScore(9);
+        name.getScore(ChatColor.RED + "    Proximo evento:").setScore(9);
         name.getScore("   ").setScore(7);
-        name.getScore(ChatColor.AQUA+"    Tu Compañero:").setScore(6);
+        name.getScore(ChatColor.AQUA+"    Tu compañero:").setScore(6);
         name.getScore("  ").setScore(4);
-        name.getScore(ChatColor.LIGHT_PURPLE+"    Tiempo Restante:").setScore(3);
+        name.getScore(ChatColor.LIGHT_PURPLE+"    Evento en:").setScore(3);
         name.getScore(" ").setScore(1);
         name.getScore(ChatColor.GOLD+""+ChatColor.BOLD+"  </"+ChatColor.YELLOW+""+ChatColor.BOLD+"By Manueluz"+ChatColor.GOLD+""+ChatColor.BOLD+">").setScore(0);
         return name;
