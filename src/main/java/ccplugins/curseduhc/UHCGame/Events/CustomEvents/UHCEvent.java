@@ -14,7 +14,7 @@ public abstract class UHCEvent extends BukkitRunnable {
     public UHCEvent(Plugin plugin){this.plugin = plugin;}
 
     public void startEvent(){
-        Countdown countdown = new Countdown(duration/1000,plugin);
+        Countdown countdown = new Countdown(duration,plugin);
         countdown.addLastTask(new Stopper(this));
         this.runTaskTimer(plugin,0,10);
     }
@@ -22,6 +22,7 @@ public abstract class UHCEvent extends BukkitRunnable {
     @Override
     public void run() {update();}
 
+    public abstract void end();
     public abstract void update();
 
     public String getName() {return name;}
