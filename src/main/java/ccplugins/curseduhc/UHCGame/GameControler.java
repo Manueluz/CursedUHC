@@ -11,6 +11,7 @@ import ccplugins.curseduhc.UHCGame.WinDetection.WinDetector;
 import ccplugins.curseduhc.UHCGame.WorldBorderTasks.WorldBorderReduceTask;
 import ccplugins.curseduhc.UHCTeams.TeamHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -68,10 +69,11 @@ public class GameControler {
         //Register the game players
         currentPlayers.clear();
         for(Player player : plugin.getServer().getOnlinePlayers()){
+            if(player.getGameMode() == GameMode.SPECTATOR){continue;}
             currentPlayers.add(player.getUniqueId());
         }
         //Teleport the game players
-        PlayerSpreader.spreadPlayers(plugin.getServer().getWorld("world"), 2400, currentPlayers);
+        PlayerSpreader.spreadPlayers(plugin.getServer().getWorld("world"), 2400, currentPlayers,plugin);
 
         //Change the game state
         GameState = true;
