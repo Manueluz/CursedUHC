@@ -25,26 +25,26 @@ public class ConnectionAnimation {
         int step;
 
         public trailAnimation(Player start, Player end, Plugin plugin){
-            direction = end.getLocation().subtract(start.getLocation()).toVector().normalize();
+            direction = end.getLocation().subtract(start.getLocation().add(0,1,0)).toVector().normalize();
 
             this.start = start;
-            this.current = start.getLocation();
+            this.current = start.getLocation().add(0,1,0);
             this.end = end;
 
-            this.runTaskTimer(plugin,0,2);
+            this.runTaskTimer(plugin,0,1);
 
             step = 0;
         }
 
         @Override
         public void run() {
-            if( !end.isOnline() ||current.distance(end.getLocation().add(0,1,0)) < 0.5f || step > 70){
+            if( !end.isOnline() ||current.distance(end.getLocation().add(0,1,0)) < 0.5f || step > 3600){
                 this.cancel();
             }
-            direction = end.getLocation().add(0,1,0).subtract(current).toVector().normalize();
+            direction = end.getLocation().add(0,1,0).subtract(current).toVector().normalize().multiply(0.2);
             step++;
             current = current.add(direction);
-            start.spawnParticle(Particle.GLOW_SQUID_INK,current.add(0,Math.cos(current.distance(end.getLocation())*3)/3f,0),8,0,0,0,0);
+            start.spawnParticle(Particle.SMALL_FLAME,current,8,0,0,0,0);
         }
     }
 }
