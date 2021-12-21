@@ -2,6 +2,7 @@ package ccplugins.curseduhc.UHCTeams;
 
 import ccplugins.curseduhc.DeathHandler.DeathListener;
 import ccplugins.curseduhc.UHCGame.GameControler;
+import ccplugins.curseduhc.UHCTeams.Animations.ConnectionAnimation;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -34,17 +35,21 @@ public class TeamsCreator extends BukkitRunnable {
             if(handler.hasTeam(player)){continue;}
             if(!GameControler.getControler().getGamePlayers().contains(player.getUniqueId())){continue;}
 
-            Collection<Entity> nearPlayers = player.getWorld().getNearbyEntities(player.getLocation(),50,50,50, en->en instanceof Player);
+            Collection<Entity> nearPlayers = player.getWorld().getNearbyEntities(player.getLocation(),150,150,150, en->en instanceof Player);
             for(Entity entity : nearPlayers){
                 Player p = (Player) entity;
                 if(p.getUniqueId() == player.getUniqueId() || !GameControler.getControler().getGamePlayers().contains(p.getUniqueId()) || handler.hasTeam(p) || DeathListener.getDeadPlayers().contains(p.getUniqueId())){continue;}
 
-                ArrayList<Player> teamMembers = new ArrayList<>();
+                if(player.getLocation().distance(p.getLocation())< 10) {
+                    ArrayList<Player> teamMembers = new ArrayList<>();
 
-                teamMembers.add(player);
-                teamMembers.add(p);
+                    teamMembers.add(player);
+                    teamMembers.add(p);
 
-                handler.createTeam(teamMembers);
+                    handler.createTeam(teamMembers);
+                }else{
+                    ConnectionAnimation.animate(player,p,plugin);
+                }
             }
         }
     }

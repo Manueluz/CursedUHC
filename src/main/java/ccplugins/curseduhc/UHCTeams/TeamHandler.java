@@ -28,7 +28,7 @@ public class TeamHandler {
         if(handler != null){return;}
         handler = new TeamHandler(plugin);
         TeamsCreator listener = new TeamsCreator(plugin);
-        listener.runTaskTimer(plugin,0,50);
+        listener.runTaskTimer(plugin,0,60);
         plugin.getServer().getPluginManager().registerEvents(new AttacksListener(),plugin);
         plugin.getCommand("team").setExecutor(new TeamCommands());
         plugin.getCommand("team").setTabCompleter(new TeamCommandTabCompleter());
