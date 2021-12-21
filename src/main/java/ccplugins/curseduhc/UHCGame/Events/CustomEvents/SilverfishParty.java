@@ -32,7 +32,7 @@ public class SilverfishParty extends UHCEvent {
 
     private static class BlockBreakListener implements Listener{
         private static final Random rand = new Random();
-        private Boolean enabled;
+        private Boolean enabled = false;
 
         public void enable(){this.enabled = true;}
         public void disable(){this.enabled = false;}
