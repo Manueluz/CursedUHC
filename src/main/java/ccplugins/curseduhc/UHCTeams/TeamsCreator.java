@@ -40,7 +40,7 @@ public class TeamsCreator extends BukkitRunnable {
                 Player p = (Player) entity;
                 if(p.getUniqueId() == player.getUniqueId() || !GameControler.getControler().getGamePlayers().contains(p.getUniqueId()) || handler.hasTeam(p) || DeathListener.getDeadPlayers().contains(p.getUniqueId())){continue;}
 
-                if(player.getLocation().distance(p.getLocation())< 10) {
+                if(player.getLocation().distance(p.getLocation())< 3) {
                     ArrayList<Player> teamMembers = new ArrayList<>();
 
                     teamMembers.add(player);
