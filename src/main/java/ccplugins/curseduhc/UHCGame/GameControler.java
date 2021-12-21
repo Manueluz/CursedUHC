@@ -5,6 +5,7 @@ import ccplugins.curseduhc.DeathHandler.DeathListener;
 import ccplugins.curseduhc.UHCGame.Countdown.Countdown;
 import ccplugins.curseduhc.UHCGame.Events.EventHandler;
 import ccplugins.curseduhc.UHCGame.GameCommands.GameCommands;
+import ccplugins.curseduhc.UHCGame.KnightsVow.KnightsVow;
 import ccplugins.curseduhc.UHCGame.PlayerSpreader.PlayerSpreader;
 import ccplugins.curseduhc.UHCGame.UI.UIupdater;
 import ccplugins.curseduhc.UHCGame.WinDetection.WinDetector;
@@ -103,6 +104,10 @@ public class GameControler {
 
         firstWBCountdown.addLastTask(new WorldBorderReduceTask(3750,900));
         secondWBCountdown.addLastTask(new WorldBorderReduceTask(200,1800));
+
+        //Start the Knights Vow
+        KnightsVow.init(plugin,3600);
+        KnightsVow.enable();
 
         //Start the UI updater
         UIupdater updater = new UIupdater(plugin);
