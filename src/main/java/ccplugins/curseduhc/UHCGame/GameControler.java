@@ -102,7 +102,7 @@ public class GameControler {
         firstWBCountdown = new Countdown(7200,plugin);
         secondWBCountdown = new Countdown(9000,plugin);
 
-        firstWBCountdown.addLastTask(new WorldBorderReduceTask(3750,900));
+        firstWBCountdown.addLastTask(new WorldBorderReduceTask(3500,900));
         secondWBCountdown.addLastTask(new WorldBorderReduceTask(200,1800));
 
         //Start the Knights Vow
