@@ -107,6 +107,6 @@ public class GameControler {
         updater.runTaskTimer(plugin,0,3);
 
         //Start the win detector
-        winDetector = new WinDetector(plugin).runTaskTimer(plugin,20000,20);
+        winDetector = new WinDetector(plugin).runTaskTimer(plugin,0,20);
     }
 }
