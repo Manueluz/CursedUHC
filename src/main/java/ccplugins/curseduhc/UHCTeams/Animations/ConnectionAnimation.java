@@ -20,14 +20,15 @@ public class ConnectionAnimation {
 
         Vector direction;
         Location current;
+        Location start;
         Player end;
 
         int step;
 
         public trailAnimation(Location start, Player end, Plugin plugin){
-            direction = end.getLocation().subtract(start).toVector();
-            direction = direction.multiply(1/direction.length());
+            direction = end.getLocation().subtract(start).toVector().normalize();
 
+            this.start = start;
             this.current = start;
             this.end = end;
 
@@ -41,6 +42,7 @@ public class ConnectionAnimation {
             if( !end.isOnline() ||current.distance(end.getLocation()) < 0.5f || step > 70){
                 this.cancel();
             }
+            direction = end.getLocation().subtract(start).toVector().normalize();
             step++;
             current = current.add(direction);
             current.getWorld().spawnParticle(Particle.REDSTONE,current.add(0,Math.cos(current.distance(end.getLocation())*3)/3f,0),8,0,0,0,0, new Particle.DustOptions(Color.BLUE,1f));
