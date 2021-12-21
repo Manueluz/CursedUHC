@@ -38,10 +38,10 @@ public class ConnectionAnimation {
 
         @Override
         public void run() {
-            if( !end.isOnline() ||current.distance(end.getLocation()) < 0.5f || step > 70){
+            if( !end.isOnline() ||current.distance(end.getLocation().add(0,1,0)) < 0.5f || step > 70){
                 this.cancel();
             }
-            direction = end.getLocation().subtract(start).toVector().normalize();
+            direction = end.getLocation().add(0,1,0).subtract(start).toVector().normalize();
             step++;
             current = current.add(direction);
             current.getWorld().spawnParticle(Particle.GLOW_SQUID_INK,current.add(0,Math.cos(current.distance(end.getLocation())*3)/3f,0),8,0,0,0,0);
