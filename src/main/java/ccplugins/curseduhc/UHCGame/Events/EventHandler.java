@@ -4,6 +4,7 @@ import ccplugins.curseduhc.UHCGame.Countdown.Countdown;
 import ccplugins.curseduhc.UHCGame.Events.CustomEvents.*;
 import ccplugins.curseduhc.UHCGame.Events.EventCommands.EventCommandTabCompleter;
 import ccplugins.curseduhc.UHCGame.Events.EventCommands.EventCommands;
+import ccplugins.curseduhc.UHCGame.GameControler;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,7 +14,7 @@ import java.util.Stack;
 
 public class EventHandler {
 
-    private static final long TIME_BETWEEN_EVENTS = 1200;
+    private static final long TIME_BETWEEN_EVENTS = 1200/ GameControler.GLOBAL_SPEED_MULT;
 
     private final Stack<UHCEvent> eventQueue;
     private static EventHandler handler;

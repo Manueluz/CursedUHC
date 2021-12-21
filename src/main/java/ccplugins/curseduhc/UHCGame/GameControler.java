@@ -25,6 +25,8 @@ import java.util.UUID;
 
 public class GameControler {
 
+    public final static int GLOBAL_SPEED_MULT = 1;
+
     private static GameControler controler;
     private Countdown finalCountDown;
     private Countdown firstWBCountdown;
@@ -74,7 +76,7 @@ public class GameControler {
             currentPlayers.add(player.getUniqueId());
         }
         //Teleport the game players
-        PlayerSpreader.spreadPlayers(plugin.getServer().getWorld("world"), 2400, currentPlayers,plugin);
+        PlayerSpreader.spreadPlayers(plugin.getServer().getWorld("world"), 2400/GLOBAL_SPEED_MULT, currentPlayers,plugin);
 
         //Change the game state
         GameState = true;
@@ -94,19 +96,19 @@ public class GameControler {
             world.setGameRule(GameRule.NATURAL_REGENERATION,false);
             world.setGameRule(GameRule.REDUCED_DEBUG_INFO,true);
             world.getWorldBorder().setCenter(0,0);
-            world.getWorldBorder().setSize(5000);
+            world.getWorldBorder().setSize(5000/GLOBAL_SPEED_MULT);
         }
 
         //Start The CountDown
-        finalCountDown = new Countdown(10800,plugin);
-        firstWBCountdown = new Countdown(7200,plugin);
-        secondWBCountdown = new Countdown(9000,plugin);
+        finalCountDown = new Countdown(10800/GLOBAL_SPEED_MULT,plugin);
+        firstWBCountdown = new Countdown(7200/GLOBAL_SPEED_MULT,plugin);
+        secondWBCountdown = new Countdown(9000/GLOBAL_SPEED_MULT,plugin);
 
-        firstWBCountdown.addLastTask(new WorldBorderReduceTask(3500,900));
-        secondWBCountdown.addLastTask(new WorldBorderReduceTask(200,1800));
+        firstWBCountdown.addLastTask(new WorldBorderReduceTask(3500/GLOBAL_SPEED_MULT,900/GLOBAL_SPEED_MULT));
+        secondWBCountdown.addLastTask(new WorldBorderReduceTask(200/GLOBAL_SPEED_MULT,1800/GLOBAL_SPEED_MULT));
 
         //Start the Knights Vow
-        KnightsVow.init(plugin,3600);
+        KnightsVow.init(plugin,3600/GLOBAL_SPEED_MULT);
         KnightsVow.enable();
 
         //Start the UI updater
