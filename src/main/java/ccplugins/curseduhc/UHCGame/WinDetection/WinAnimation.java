@@ -28,14 +28,14 @@ public class WinAnimation extends BukkitRunnable {
         for(int i = 0; i < 10; i++){
             Location location = new Location(loc.getWorld(),0,0,0);
 
-            location.add(loc);
+            location = location.add(loc);
             location.setY(0);
 
             int x = rand.nextInt(500)-250;
             int z = rand.nextInt(500)-250;
             int y = location.getWorld().getHighestBlockYAt(x,z)+3;
 
-            location.add(x,y,z);
+            location = location.add(x,y,z);
 
             Firework firework = (Firework) location.getWorld().spawnEntity(location, EntityType.FIREWORK);
             FireworkMeta meta = firework.getFireworkMeta();
