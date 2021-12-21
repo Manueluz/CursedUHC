@@ -41,7 +41,7 @@ public class ConnectionAnimation {
             if( !end.isOnline() ||current.distance(end.getLocation().add(0,1,0)) < 0.5f || step > 70){
                 this.cancel();
             }
-            direction = end.getLocation().add(0,1,0).subtract(start.getLocation()).toVector().normalize();
+            direction = end.getLocation().add(0,1,0).subtract(current).toVector().normalize();
             step++;
             current = current.add(direction);
             start.spawnParticle(Particle.GLOW_SQUID_INK,current.add(0,Math.cos(current.distance(end.getLocation())*3)/3f,0),8,0,0,0,0);
