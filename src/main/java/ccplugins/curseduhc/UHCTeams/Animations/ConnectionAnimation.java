@@ -1,7 +1,6 @@
 package ccplugins.curseduhc.UHCTeams.Animations;
 
 
-import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -45,7 +44,7 @@ public class ConnectionAnimation {
             direction = end.getLocation().subtract(start).toVector().normalize();
             step++;
             current = current.add(direction);
-            current.getWorld().spawnParticle(Particle.REDSTONE,current.add(0,Math.cos(current.distance(end.getLocation())*3)/3f,0),8,0,0,0,0, new Particle.DustOptions(Color.BLUE,1f));
+            current.getWorld().spawnParticle(Particle.GLOW_SQUID_INK,current.add(0,Math.cos(current.distance(end.getLocation())*3)/3f,0),8,0,0,0,0);
         }
     }
 }
