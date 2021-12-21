@@ -12,23 +12,23 @@ import org.bukkit.util.Vector;
 
 public class ConnectionAnimation {
     public static void animate(Player player1, Player player2, Plugin plugin){
-        new trailAnimation(player1.getLocation().add(0,1,0),player2,plugin);
+        new trailAnimation(player1,player2,plugin);
         //new trailAnimation(player2.getLocation(),center,plugin); //Teams creator will launch one from each player
     }
     private static class trailAnimation extends BukkitRunnable {
 
         Vector direction;
         Location current;
-        Location start;
+        Player start;
         Player end;
 
         int step;
 
-        public trailAnimation(Location start, Player end, Plugin plugin){
-            direction = end.getLocation().subtract(start).toVector().normalize();
+        public trailAnimation(Player start, Player end, Plugin plugin){
+            direction = end.getLocation().subtract(start.getLocation()).toVector().normalize();
 
             this.start = start;
-            this.current = start;
+            this.current = start.getLocation();
             this.end = end;
 
             this.runTaskTimer(plugin,0,2);
@@ -41,10 +41,10 @@ public class ConnectionAnimation {
             if( !end.isOnline() ||current.distance(end.getLocation().add(0,1,0)) < 0.5f || step > 70){
                 this.cancel();
             }
-            direction = end.getLocation().add(0,1,0).subtract(start).toVector().normalize();
+            direction = end.getLocation().add(0,1,0).subtract(start.getLocation()).toVector().normalize();
             step++;
             current = current.add(direction);
-            current.getWorld().spawnParticle(Particle.GLOW_SQUID_INK,current.add(0,Math.cos(current.distance(end.getLocation())*3)/3f,0),8,0,0,0,0);
+            start.spawnParticle(Particle.GLOW_SQUID_INK,current.add(0,Math.cos(current.distance(end.getLocation())*3)/3f,0),8,0,0,0,0);
         }
     }
 }
