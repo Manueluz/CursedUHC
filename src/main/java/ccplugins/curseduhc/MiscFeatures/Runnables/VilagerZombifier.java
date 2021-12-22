@@ -12,7 +12,7 @@ public class VilagerZombifier extends BukkitRunnable {
     public void run() {
         for(Entity entity : Bukkit.getWorld("world").getEntitiesByClass(Villager.class)){
             entity.getWorld().spawnEntity(entity.getLocation(), EntityType.ZOMBIE);
-            entity.teleport(entity.getLocation().add(0,-600,0));
+            entity.remove();
         }
     }
 }
