@@ -56,7 +56,7 @@ public class EventHandler {
         currentCountdown.addLastTask(new EventQueueUpdate());
     }
     public void update(boolean resetCountdown){
-        if(resetCountdown) {
+        if(resetCountdown && !eventQueue.isEmpty()) {
             currentCountdown = new Countdown(TIME_BETWEEN_EVENTS, plugin);
             currentCountdown.addLastTask(new EventQueueUpdate());
         }
