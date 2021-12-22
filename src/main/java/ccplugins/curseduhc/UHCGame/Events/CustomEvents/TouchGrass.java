@@ -12,7 +12,7 @@ public class TouchGrass extends UHCEvent {
     boolean isDone;
     public TouchGrass(Plugin plugin) {
         super(plugin);
-        setDuration(1);
+        setDuration(3);
         setName("Touch Grass");
         isDone = false;
     }
