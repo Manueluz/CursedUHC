@@ -37,6 +37,7 @@ public abstract class UHCEvent extends BukkitRunnable {
         }
         @Override
         public void run() {
+            event.end();
             event.cancel();
         }
     }
