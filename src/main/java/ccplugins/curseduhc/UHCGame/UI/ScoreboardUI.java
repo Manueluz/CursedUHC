@@ -37,7 +37,7 @@ public class ScoreboardUI {
 
             String nextEventS = "NONE";
             String remainingTimeS = "00:00";
-            if(EventHandler.getHandler().nextEvent() != null) {
+            if(!EventHandler.getHandler().getEventQueue().isEmpty()) {
                 nextEventS = EventHandler.getHandler().nextEvent().getName();
                 remainingTimeS = EventHandler.getHandler().getEventCountdown().toString().substring(3, 8);
             }
