@@ -35,8 +35,12 @@ public class ScoreboardUI {
 
             Objective name = CreateObjective(scoreboard);
 
-            String nextEventS = EventHandler.getHandler().nextEvent().getName();
-            String remainingTimeS = EventHandler.getHandler().getEventCountdown().toString().substring(3,8);
+            String nextEventS = "NONE";
+            String remainingTimeS = "00:00";
+            if(EventHandler.getHandler().nextEvent() != null) {
+                nextEventS = EventHandler.getHandler().nextEvent().getName();
+                remainingTimeS = EventHandler.getHandler().getEventCountdown().toString().substring(3, 8);
+            }
 
             name.getScore(ChatColor.GRAY+"    "+remainingTimeS).setScore(2);
             if(TeamHandler.getHandler().hasTeam(player)){
