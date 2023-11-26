@@ -1,4 +1,4 @@
-# CursedUHC
+# CursedUHC - Minecraft 1.18
 A minecraft plugin for an UHC.
 
 The main idea of the plugin is for certain events to trigger on an interval, giving some challenges to the players
