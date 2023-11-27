@@ -23,7 +23,7 @@ Events are enqueued and choosen at random every 15 minutes.
 Teams are created when two players without a team get near eachother, two particle rays will appear and bring them together.
 Teams can use a team chat to talk to eachother, and can set their team name (**once**)
 
-## Config
+## World-Config
 - Villages are zombie villages (villager trading was too **OP**)
 - There arent coords (Players might agree on an spot before starting the game to team up) a compass will guide them to 0.0
 - Ghasts only drop gold ingots
@@ -42,3 +42,12 @@ Teams can use a team chat to talk to eachother, and can set their team name (**o
 - Game lasts 3 hours
 - At 2 hours borders go from (2500 -> 1750)
 - At 1 hour border starts closing down to a size of 100 blocks
+
+---
+# Wishlist
+## Random world generator
+A world service that will generate a unique and random world (Like minecraft [old custom worlds](https://minecraft.fandom.com/wiki/Old_Customized)) for each UHC Game, will probably need lots of tuning
+
+Interesting documentation:
+- [Old custom worlds](https://minecraft.fandom.com/wiki/Old_Customized) and [modern custom worlds](https://minecraft.fandom.com/wiki/Custom)
+- [WorldCreator](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Bukkit.html#createWorld(org.bukkit.WorldCreator))
