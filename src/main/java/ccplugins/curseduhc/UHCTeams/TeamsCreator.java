@@ -1,30 +1,41 @@
 package ccplugins.curseduhc.UHCTeams;
 
-import ccplugins.curseduhc.DeathHandler.DeathListener;
-import ccplugins.curseduhc.UHCGame.GameControler;
+import ccplugins.curseduhc.CursedUHC;
 import ccplugins.curseduhc.UHCTeams.Animations.ConnectionAnimation;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class TeamsCreator extends BukkitRunnable {
 
-    private final Plugin plugin;
+    private final Plugin plugin = CursedUHC.plugin;
     private final TeamHandler handler;
 
-    public TeamsCreator(Plugin plugin){
-        this.plugin = plugin;
-        this.handler = TeamHandler.getHandler();
+    public TeamsCreator(TeamHandler handler){
+        this.handler = handler;
     }
 
     @Override
     public void run() {
+        plugin.getServer()
+            .getOnlinePlayers()
+            .stream()
+            .filter(p -> !handler.hasTeam(p.getUniqueId()))
+            .forEach((player) -> {
+                player.getNearbyEntities(50,50,50)
+                    .stream()
+                    .filter(e -> e instanceof Player)
+                    .map(e -> (Player) e)
+                    .forEach((player2) -> {
+                        if(distance(player2,player) < 3)
+                            handler.createTeam(player.getUniqueId(),player2.getUniqueId());
+                        else
+                            ConnectionAnimation.animate(player,player2,plugin);
+                    });
+            });
+        /*
         if(!GameControler.getControler().isGameStarted()){return;}
         if(handler.teamsCompleted()){
             plugin.getServer().broadcastMessage(ChatColor.of(new Color(35,255,150)) + "Todos los jugadores tienen equipo!");
@@ -52,5 +63,10 @@ public class TeamsCreator extends BukkitRunnable {
                 }
             }
         }
+        */
+    }
+
+    private int distance(Player player1, Player player2) {
+        return (int) player1.getLocation().distance(player2.getLocation());
     }
 }

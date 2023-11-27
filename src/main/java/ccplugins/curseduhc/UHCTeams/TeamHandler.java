@@ -1,72 +1,70 @@
 package ccplugins.curseduhc.UHCTeams;
 
-import ccplugins.curseduhc.UHCTeams.TeamCommands.TeamCommandTabCompleter;
-import ccplugins.curseduhc.UHCTeams.TeamCommands.TeamCommands;
+import ccplugins.curseduhc.CursedUHC;
+import ccplugins.curseduhc.CursedUHCConfig;
+import ccplugins.curseduhc.Handlers.Handler;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
+import java.awt.Color;
+import java.util.*;
 
-public class TeamHandler {
+public class TeamHandler implements Handler {
+    private List<Team> teams;
+    private final JavaPlugin plugin = CursedUHC.plugin;
 
-    private final HashMap<UUID,Team> teams;
-    private static TeamHandler handler;
-    private final Plugin plugin;
 
-    private TeamHandler(Plugin plugin){
-        this.plugin = plugin;
-        teams = new HashMap<>();
-    }
-
-    public static void init(JavaPlugin plugin){
-        if(handler != null){return;}
-        handler = new TeamHandler(plugin);
-        TeamsCreator listener = new TeamsCreator(plugin);
-        listener.runTaskTimer(plugin,0,60);
+    public void init(CursedUHCConfig config){
+        teams = new ArrayList<>();
+        new TeamsCreator(this).runTaskTimer(plugin,10,10);
+        /*
         plugin.getServer().getPluginManager().registerEvents(new AttacksListener(),plugin);
         plugin.getCommand("team").setExecutor(new TeamCommands());
-        plugin.getCommand("team").setTabCompleter(new TeamCommandTabCompleter());
+        plugin.getCommand("team").setTabCompleter(new TeamCommandTabCompleter());*/
     }
 
-    public static TeamHandler getHandler(){
-        return handler;
+    public void stop(){
+        //Uneeded
     }
 
-    public void createTeam(ArrayList<Player> members){
-        Team team = new Team(members);
-        plugin.getServer().broadcastMessage(ChatColor.of(new Color(35,255,150)) + "Se ha formado un nuevo equipo entre " + members.get(0).getDisplayName() + " y " + members.get(1).getDisplayName());
-        for(Player p : plugin.getServer().getOnlinePlayers()){
-            p.playSound(p.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE,100,1);
-        }
-        for(Player p : members){
-            teams.put(p.getUniqueId(),team);
-            p.sendMessage(ChatColor.of(new Color(100,205,150)) + "Ahora estas en un equipo!");
-        }
+    public void createTeam(UUID... members){
+        createTeam(Arrays.asList(members));
+    }
+
+    public void createTeam(List<UUID> members){
+        plugin.getServer().broadcastMessage(ChatColor.of(new Color(35,255,150)) + "Se ha formado un nuevo equipo!");
+        plugin.getServer().getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE,100,1));
+        teams.add(new Team(members));
     }
 
     public void clearTeams(){
         teams.clear();
     }
 
-    public Team getTeam(Player member){
-        return teams.get(member.getUniqueId());
+    public Optional<Team> getTeam(UUID id){
+        return teams
+            .stream()
+            .filter(t -> t.getMembers().contains(id))
+            .findFirst();
     }
 
-    public boolean hasTeam(Player player){
-        return teams.containsKey(player.getUniqueId());
+    public boolean hasTeam(UUID id){
+        return getTeam(id).isPresent();
     }
 
     public boolean teamsCompleted(){
+        /*
         int singlePlayerCount = 0;
         for(Player p : plugin.getServer().getOnlinePlayers()){
             if(!teams.containsKey(p.getUniqueId())){singlePlayerCount++;}
         }
-        return singlePlayerCount <= 1;
+        return singlePlayerCount <= 1;*/
+        return true;
+    }
+
+    public static TeamHandler getHandler(){
+        return new TeamHandler();
     }
 }

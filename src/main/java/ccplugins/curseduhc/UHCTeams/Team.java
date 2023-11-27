@@ -1,43 +1,44 @@
 package ccplugins.curseduhc.UHCTeams;
 
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
+import java.awt.*;
+import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Team {
-
-    private final ArrayList<UUID> members;
+    private final List<UUID> members;
     private String name;
 
-    public Team(ArrayList<Player> members){
-        this.members = new ArrayList<>();
-        members.forEach(member -> this.members.add(member.getUniqueId()));
-        name = "Alone";
+    public Team(List<UUID> members){
+        this.members = members;
+        this.members.stream()
+            .map(Bukkit::getPlayer)
+            .filter(Objects::nonNull)
+            .forEach(p -> p.sendMessage(ChatColor.of(new Color(100,205,150)) + "Ahora estas en un equipo!"));
+        name = "No-Name";
     }
 
-    public ArrayList<UUID> getMembers(){return members;}
+    public List<UUID> getMembers(){
+        return members;
+    }
 
-    public String getName(){return name;}
+    public String getName(){
+        return name;
+    }
 
-    public void setName(String name) {this.name = name;}
-
-    public boolean isMember(Player player){
-        for(UUID id : members){
-            if(id == player.getUniqueId()){
-                return true;
-            }
-        }
-        return false;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void sendMessage(String message){
-        for(UUID id : members){
-            Player player = Bukkit.getPlayer(id);
-            if (player != null && player.isOnline()) {
-                player.sendMessage(message);
-            }
-        }
+        members.stream()
+            .map(Bukkit::getPlayer)
+            .filter(Objects::nonNull)
+            .filter(Player::isOnline)
+            .forEach(p -> p.sendMessage(message));
     }
 }
