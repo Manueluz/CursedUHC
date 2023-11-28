@@ -28,6 +28,7 @@ public class TeamsCreator extends BukkitRunnable {
                     .stream()
                     .filter(e -> e instanceof Player)
                     .map(e -> (Player) e)
+                    .filter(p -> !handler.hasTeam(p.getUniqueId()))
                     .forEach((player2) -> {
                         if(distance(player2,player) < 3)
                             handler.createTeam(player.getUniqueId(),player2.getUniqueId());
