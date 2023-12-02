@@ -2,6 +2,7 @@ package ccplugins.curseduhc.TeamService;
 
 import ccplugins.curseduhc.CursedUHC;
 import ccplugins.curseduhc.CursedUHCConfig;
+import ccplugins.curseduhc.DeathService.DeathService;
 import ccplugins.curseduhc.Helpers.PluginHelper;
 import ccplugins.curseduhc.Service.Service;
 import ccplugins.curseduhc.TeamService.TeamCommands.TeamCommandTabCompleter;
@@ -14,11 +15,14 @@ import java.awt.Color;
 import java.util.*;
 
 public class TeamService implements Service {
+    private DeathService deathService;
     private List<Team> teams;
     private final JavaPlugin plugin = CursedUHC.plugin;
 
 
     public void init(CursedUHCConfig config){
+        deathService = config.getByClass(DeathService.class);
+
         teams = new ArrayList<>();
 
         new TeamsCreator(this).runTaskTimer(plugin,10,10);
@@ -77,5 +81,9 @@ public class TeamService implements Service {
         return teams
                 .stream()
                 .anyMatch(t -> t.getName().equals(name));
+    }
+
+    public boolean isDead(UUID uniqueId) {
+        return deathService.isDead(uniqueId);
     }
 }

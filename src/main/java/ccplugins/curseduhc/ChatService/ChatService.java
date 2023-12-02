@@ -2,6 +2,7 @@ package ccplugins.curseduhc.ChatService;
 
 import ccplugins.curseduhc.ChatService.ChatModes.ChatMode;
 import ccplugins.curseduhc.CursedUHCConfig;
+import ccplugins.curseduhc.DeathService.DeathService;
 import ccplugins.curseduhc.Helpers.PluginHelper;
 import ccplugins.curseduhc.Service.Service;
 import ccplugins.curseduhc.TeamService.Team;
@@ -13,12 +14,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class ChatService implements Service {
-
+    private DeathService deathService;
     private TeamService teams;
 
     private final Map<UUID, ChatMode> playerChatModes = new HashMap<>();
 
     public void init(CursedUHCConfig config){
+        deathService = config.getByClass(DeathService.class);
         teams = config.getByClass(TeamService.class);
         
         PluginHelper.registerListener(new ChatListener(this));
@@ -44,5 +46,9 @@ public class ChatService implements Service {
     
     public ChatMode getPlayerChatMode(UUID id){
         return playerChatModes.getOrDefault(id, ChatMode.GLOBAL_CHAT);
+    }
+
+    public boolean isDead(UUID uniqueId) {
+        return deathService.isDead(uniqueId);
     }
 }

@@ -20,7 +20,10 @@ public class ChatCommandListener extends PlayerCommandExecutor {
     @Override
     public boolean doCommand(Player player, Command command, String label, String[] args) {
         if(args.length != 1 || args[0].length() != 1) return false;
-
+        if(service.isDead(player.getUniqueId())){
+            player.sendMessage("You are dead!");
+            return true;
+        }
 
         switch (args[0]){
             case "G":

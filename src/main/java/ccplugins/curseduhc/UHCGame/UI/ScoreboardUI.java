@@ -1,7 +1,7 @@
 package ccplugins.curseduhc.UHCGame.UI;
 
 import ccplugins.curseduhc.UHCGame.Events.EventHandler;
-import ccplugins.curseduhc.UHCTeams.TeamHandler;
+import ccplugins.curseduhc.TeamService.TeamService;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -43,8 +43,8 @@ public class ScoreboardUI {
             }
 
             name.getScore(ChatColor.GRAY+"    "+remainingTimeS).setScore(2);
-            if(TeamHandler.getHandler().hasTeam(player)){
-                for(UUID id : TeamHandler.getHandler().getTeam(player).getMembers()){
+            if(TeamService.getHandler().hasTeam(player.getUniqueId())){
+                for(UUID id : TeamService.getHandler().getTeam(player.getUniqueId()).get().getMembers()){
                     if(id == player.getUniqueId()){continue;}
                     name.getScore(ChatColor.GRAY+"    "+plugin.getServer().getOfflinePlayer(id).getName()).setScore(5);
                 }

@@ -1,7 +1,7 @@
 package ccplugins.curseduhc.UHCGame;
 
 
-import ccplugins.curseduhc.DeathHandler.DeathListener;
+import ccplugins.curseduhc.DeathService.DeathListener;
 import ccplugins.curseduhc.UHCGame.Countdown.Countdown;
 import ccplugins.curseduhc.UHCGame.Events.EventHandler;
 import ccplugins.curseduhc.UHCGame.GameCommands.GameCommands;
@@ -10,7 +10,7 @@ import ccplugins.curseduhc.UHCGame.PlayerSpreader.PlayerSpreader;
 import ccplugins.curseduhc.UHCGame.UI.UIupdater;
 import ccplugins.curseduhc.UHCGame.WinDetection.WinDetector;
 import ccplugins.curseduhc.UHCGame.WorldBorderTasks.WorldBorderReduceTask;
-import ccplugins.curseduhc.UHCTeams.TeamHandler;
+import ccplugins.curseduhc.TeamService.TeamService;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
@@ -54,7 +54,7 @@ public class GameControler {
     public boolean isGameStarted(){return GameState;}
     public ArrayList<UUID> getAlivePlayers(){
         ArrayList<UUID> players = getGamePlayers();
-        players.removeIf(player -> DeathListener.getDeadPlayers().contains(player));
+        //players.removeIf(player -> DeathListener.getDeadPlayers().contains(player));
         return players;
     }
 
@@ -82,10 +82,10 @@ public class GameControler {
         GameState = true;
 
         //Clear the teams
-        TeamHandler.getHandler().clearTeams();
+        TeamService.getHandler().clearTeams();
 
         //Clean the dead players
-        DeathListener.getDeadPlayers().clear();
+        //DeathListener.getDeadPlayers().clear();
 
         //Start The events
         EventHandler.getHandler().loadEvents();

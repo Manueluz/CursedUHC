@@ -1,17 +1,9 @@
 package ccplugins.curseduhc.UHCGame.WinDetection;
 
-import ccplugins.curseduhc.UHCGame.GameControler;
-import ccplugins.curseduhc.UHCTeams.TeamHandler;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.UUID;
 
 public class WinDetector extends BukkitRunnable {
 
@@ -23,6 +15,7 @@ public class WinDetector extends BukkitRunnable {
 
     @Override
     public void run() {
+        /*
         if(!GameControler.getControler().isGameStarted()){this.cancel();}
         ArrayList<UUID> players = GameControler.getControler().getAlivePlayers();
 
@@ -47,13 +40,13 @@ public class WinDetector extends BukkitRunnable {
             case 2:
                 Player player1 = Bukkit.getPlayer(players.get(0));
                 Player player2 = Bukkit.getPlayer(players.get(1));
-                if(TeamHandler.getHandler().hasTeam(player1) && TeamHandler.getHandler().getTeam(player1).isMember(player2)){
+                if(TeamHandler.getHandler().hasTeam(player1.getUniqueId()) && TeamHandler.getHandler().getTeam(player1.getUniqueId()).get().isMember(player2)){
                     new WinAnimation(player1.getUniqueId()).runTaskTimer(plugin,0,1);
                     Bukkit.getServer().broadcastMessage(ChatColor.of(new Color(83, 255, 0, 255)) + player1.getDisplayName() + " y " + player2.getDisplayName() + " han ganado la primera edicion de Cursed UHC!!!");
                     broadcastTitle(title.replace("%1", player1.getDisplayName()).replace("%2", player2.getDisplayName()),subtitle,40,200,60);
                     GameControler.getControler().stopGame();
                 }
-        }
+        }*/
     }
 
     private void broadcastTitle(String title, String subtitle, int fadein, int stay, int fadeout){
