@@ -1,18 +1,13 @@
 package ccplugins.curseduhc;
 
-import ccplugins.curseduhc.ChatHandler.ChatHandler;
-import ccplugins.curseduhc.DeathHandler.DeathListener;
-import ccplugins.curseduhc.MiscFeatures.MiscLoader;
-import ccplugins.curseduhc.UHCGame.Events.EventHandler;
-import ccplugins.curseduhc.UHCGame.GameControler;
-import ccplugins.curseduhc.UHCTeams.TeamHandler;
+import ccplugins.curseduhc.ChatService.ChatService;
+import ccplugins.curseduhc.TeamService.TeamService;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
 
-//Editor freaks out about the class being unused
-@SuppressWarnings("unused")
 public final class CursedUHC extends JavaPlugin {
+    private CursedUHCConfig config;
 
     public static JavaPlugin plugin;
     public static Logger logger;
@@ -23,16 +18,12 @@ public final class CursedUHC extends JavaPlugin {
         registerSingleton();
 
         //Create the config
-        CursedUHCConfig config = new CursedUHCConfig()
-            .addHandler(new TeamHandler())
-            .addHandler(new ChatHandler())
-            .addHandler()
-            .addHandler()
-            .addHandler()
-            .addHandler()
+        config = new CursedUHCConfig()
+            .addService(new TeamService())
+            .addService(new ChatService())
             .init();
 
-
+/*
         logger.info("Loading TeamHandler");
         TeamHandler.init(this);
         logger.info("Loading ChatListener");
@@ -40,16 +31,17 @@ public final class CursedUHC extends JavaPlugin {
         logger.info("Loading DeathListener");
         DeathListener.init(this);
         logger.info("Loading GameController");
-        GameControler.init(this);
+        GameController.init(this);
         logger.info("Loading EventHandler");
         EventHandler.init(this);
         logger.info("Loading MicsFeatures");
         MiscLoader.init(this);
+*/
     }
 
     @Override
     public void onDisable() {
-        EventHandler.getHandler().stop();
+        config.stop();
     }
 
     //Private methods

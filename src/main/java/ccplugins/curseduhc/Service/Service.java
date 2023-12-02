@@ -1,8 +1,8 @@
-package ccplugins.curseduhc.Handlers;
+package ccplugins.curseduhc.Service;
 
 import ccplugins.curseduhc.CursedUHCConfig;
 
-public interface Handler {
+public interface Service {
     void init(CursedUHCConfig config);
     void stop();
 }

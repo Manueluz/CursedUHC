@@ -1,34 +1,41 @@
 package ccplugins.curseduhc;
 
-import ccplugins.curseduhc.Handlers.Handler;
-
 import java.util.*;
 
+import ccplugins.curseduhc.Service.Service;
+
 public class CursedUHCConfig {
-    private final List<Handler> handlers = new ArrayList<>();
-    public CursedUHCConfig addHandler(Handler handler){
-        handlers.add(handler);
+    private final List<Service> services = new ArrayList<>();
+    
+    public CursedUHCConfig addService(Service service){
+        services.add(service);
         return this;
     }
     
     public CursedUHCConfig init() {
-        handlers.forEach(handler -> handler.init(this));
+        services.forEach(service -> {
+            CursedUHC.logger.info("Loading " + service.getClass().getSimpleName() + "...");
+            service.init(this);
+        });
         return this;
     }
     
     public CursedUHCConfig stop() {
-        handlers.forEach(Handler::stop);
+        services.forEach((service) -> {
+            CursedUHC.logger.info("Un-Loading " + service.getClass().getSimpleName() + "...");
+            service.stop();
+        });
         return this;
     }
     
     //It is checked by the filter, compiler does not realize it
     @SuppressWarnings("unchecked")   
-    public <T extends Handler> T getByClass(Class<T> clazz){
-        return handlers
+    public <T extends Service> T getByClass(Class<T> clazz){
+        return services
             .stream()
             .filter(h->h.getClass().equals(clazz))
             .map(h -> (T) h)
             .findFirst()
-            .orElseThrow(()-> new RuntimeException("Handler not found!"));
+            .orElseThrow(()-> new RuntimeException("Service not found!"));
     }
 }
