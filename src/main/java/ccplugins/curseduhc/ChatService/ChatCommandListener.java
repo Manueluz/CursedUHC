@@ -1,5 +1,6 @@
 package ccplugins.curseduhc.ChatService;
 
+import ccplugins.curseduhc.ChatService.ChatModes.ChatMode;
 import ccplugins.curseduhc.Helpers.PlayerCommandExecutor;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;

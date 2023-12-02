@@ -1,5 +1,6 @@
 package ccplugins.curseduhc.ChatService;
 
+import ccplugins.curseduhc.ChatService.ChatModes.ChatMode;
 import ccplugins.curseduhc.CursedUHCConfig;
 import ccplugins.curseduhc.Helpers.PluginHelper;
 import ccplugins.curseduhc.Service.Service;
@@ -15,7 +16,7 @@ public class ChatService implements Service {
 
     private TeamService teams;
 
-    private final Map<UUID,ChatMode> playerChatModes = new HashMap<>();
+    private final Map<UUID, ChatMode> playerChatModes = new HashMap<>();
 
     public void init(CursedUHCConfig config){
         teams = config.getByClass(TeamService.class);
