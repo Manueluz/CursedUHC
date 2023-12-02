@@ -1,19 +1,17 @@
-package ccplugins.curseduhc.UHCTeams;
+package ccplugins.curseduhc.TeamService;
 
 import ccplugins.curseduhc.CursedUHC;
-import ccplugins.curseduhc.UHCTeams.Animations.ConnectionAnimation;
+import ccplugins.curseduhc.TeamService.Animations.ConnectionAnimation;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-
 public class TeamsCreator extends BukkitRunnable {
 
     private final Plugin plugin = CursedUHC.plugin;
-    private final TeamHandler handler;
+    private final TeamService handler;
 
-    public TeamsCreator(TeamHandler handler){
+    public TeamsCreator(TeamService handler){
         this.handler = handler;
     }
 

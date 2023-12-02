@@ -1,4 +1,4 @@
-package ccplugins.curseduhc.UHCTeams.Animations;
+package ccplugins.curseduhc.TeamService.Animations;
 
 
 import org.bukkit.Location;
@@ -13,7 +13,6 @@ import org.bukkit.util.Vector;
 public class ConnectionAnimation {
     public static void animate(Player player1, Player player2, Plugin plugin){
         new trailAnimation(player1,player2,plugin);
-        //new trailAnimation(player2.getLocation(),center,plugin); //Teams creator will launch one from each player
     }
     private static class trailAnimation extends BukkitRunnable {
 

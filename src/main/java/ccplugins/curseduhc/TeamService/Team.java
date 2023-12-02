@@ -1,4 +1,4 @@
-package ccplugins.curseduhc.UHCTeams;
+package ccplugins.curseduhc.TeamService;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Team {
+    private static final String DEFAULT_NAME = "No-name";
     private final List<UUID> members;
     private String name;
 
@@ -19,7 +20,7 @@ public class Team {
             .map(Bukkit::getPlayer)
             .filter(Objects::nonNull)
             .forEach(p -> p.sendMessage(ChatColor.of(new Color(100,205,150)) + "Ahora estas en un equipo!"));
-        name = "No-Name";
+        name = DEFAULT_NAME;
     }
 
     public List<UUID> getMembers(){
@@ -40,5 +41,9 @@ public class Team {
             .filter(Objects::nonNull)
             .filter(Player::isOnline)
             .forEach(p -> p.sendMessage(message));
+    }
+
+    public boolean canChangeName() {
+        return name.equals(DEFAULT_NAME);
     }
 }

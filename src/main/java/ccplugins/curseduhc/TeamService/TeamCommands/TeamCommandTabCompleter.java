@@ -1,4 +1,4 @@
-package ccplugins.curseduhc.UHCTeams.TeamCommands;
+package ccplugins.curseduhc.TeamService.TeamCommands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
