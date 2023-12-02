@@ -51,3 +51,13 @@ A world service that will generate a unique and random world (Like minecraft [ol
 Interesting documentation:
 - [Old custom worlds](https://minecraft.fandom.com/wiki/Old_Customized) and [modern custom worlds](https://minecraft.fandom.com/wiki/Custom)
 - [WorldCreator](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Bukkit.html#createWorld(org.bukkit.WorldCreator))
+
+## Random Item drops
+Every item drop is randomly generated.
+
+The random drops are repeatable inside each game, for example if a log drops coal it will always drop coal in that same game.
+
+## Add Configuration
+Add a config file to select the game modes, duration, times, events...
+
+maybe [YAML](https://bitbucket.org/snakeyaml/snakeyaml-engine/wiki/Documentation)?
