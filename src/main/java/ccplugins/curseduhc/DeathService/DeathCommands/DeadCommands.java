@@ -1,11 +1,7 @@
 package ccplugins.curseduhc.DeathService.DeathCommands;
 
-import ccplugins.curseduhc.DeathService.DeathListener;
 import ccplugins.curseduhc.DeathService.DeathService;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

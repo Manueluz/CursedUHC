@@ -2,6 +2,8 @@ package ccplugins.curseduhc;
 
 import ccplugins.curseduhc.ChatService.ChatService;
 import ccplugins.curseduhc.DeathService.DeathService;
+import ccplugins.curseduhc.EventService.EventService;
+import ccplugins.curseduhc.MiscService.MiscService;
 import ccplugins.curseduhc.TeamService.TeamService;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -23,6 +25,8 @@ public final class CursedUHC extends JavaPlugin {
                 .addService(new TeamService())
                 .addService(new ChatService())
                 .addService(new DeathService())
+                .addService(new EventService())
+                .addService(new MiscService())
                 .init();
 
 /*
