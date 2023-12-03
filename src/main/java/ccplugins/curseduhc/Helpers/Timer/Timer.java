@@ -23,7 +23,7 @@ public class Timer {
     }
 
     public void addTask(Task task, TaskScope scope){
-        if(tasks.containsKey(scope))
+        if(!tasks.containsKey(scope))
             tasks.put(scope, new ArrayList<>());
         tasks.get(scope).add(task);
     }
@@ -42,7 +42,8 @@ public class Timer {
     }
 
     public void pause(){
-        updater.cancel();
+        if(updater!=null)
+            updater.cancel();
     }
 
     public void start(){
